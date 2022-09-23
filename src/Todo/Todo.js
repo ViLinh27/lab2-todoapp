@@ -9,3 +9,16 @@
 //dateCompleted() - dynamic
 
 //checkbox with complete boolean needed
+
+export default function Todo(title,description,author,dateCreated,complete, dateCompleted){
+    return(
+        <div>
+            <h3>{title}</h3>
+            <div>{dateCreated}</div>
+            <div>{dateCompleted}</div>
+            <div>{description}</div>
+            <i>Written by <b>{author}</b></i>
+            <div>{complete}</div>
+        </div>
+    )
+}

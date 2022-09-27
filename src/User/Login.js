@@ -6,7 +6,7 @@ export default function Login({setUser}){
     function handleUsername (evt) {setUsername(evt.target.value)}
 
     return(
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={e => {e.preventDefault(); setUser(username);}}>
             <label htmlFor="login-username">Username: </label>
             <input type="text" value={username} onChange={handleUsername} name="login-username" id="login-username"/>
             

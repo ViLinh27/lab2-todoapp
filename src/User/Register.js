@@ -14,7 +14,7 @@ export default function Register({setUser}){
             <label htmlFor="register-password">Password: </label>
             <input type="password" name="register-password" id="register-password" value={formData.password} onChange={e =>setFormData({...formData, password:e.target.value})} />
 
-            <label>Repeat password: </label>
+            <label htmlFor="register-password-repeat">Repeat password: </label>
             <input type="password" name="register-password-repeat" id="register-password-repeat" value={formData.passwordRepeat}
             onChange={e => setFormData({...formData, passwordRepeat : e.target.value})} />
 

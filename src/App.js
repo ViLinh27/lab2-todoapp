@@ -10,17 +10,17 @@ function App() {
   const initialTodos={
     title: "first post",
     content: "content 1",
-    author: "paul"
+    //author: "paul"
   } 
 
   const [user,setUser] =useState('')
-  const [posts, setPosts] = useState('')
+  const [toDos, setToDos] = useState(initialTodos)
 
   return (
     <div className="App">
       <header>
         <div>
-          <UserBar user={user && <CreateTodo user={user}/>} posts={posts} setPosts = {setPosts}/>
+          <UserBar user={user && <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/>} setUser={setUser}/>
           <Todolist/>
         </div>
       </header>

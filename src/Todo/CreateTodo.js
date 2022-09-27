@@ -1,15 +1,18 @@
 //make a to do to add to todolist
 import {useState} from 'react';
 
-export default function CreateTodo({user}){
-    const [todos, setTodos] = useState('')
+export default function CreateTodo({user,toDos,setToDos}){
+    //const [todos, setTodos] = useState('')
     const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
 
     function handleTitle (evt) {setTitle(evt.target.value)}
 
+    function handleDescription (evt) {setDescription(evt.target.value)}
+
     function handleCreate(){
-        const newTodo = {title,author:user}
-        setTodos([newTodo,...todos])
+        const newTodo = {title,description, author:user}
+        setToDos([newTodo,...toDos])
     }
 
     return(
@@ -19,8 +22,8 @@ export default function CreateTodo({user}){
                 <label htmlFor="create-title">Title:</label>
                 <input type="text" valule={title} onChange={handleTitle} name="create-title" id="create-title"/>
             </div>
-            {/*<textarea value={} onChange={}/>*/}
-            <input type="submit" value="Create"/>
+            <textarea value={description} onChange={handleDescription}/>
+            <input type="submit" value="Create" onChange={handleCreate}/>
         </form>
     )
 }

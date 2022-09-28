@@ -15,15 +15,16 @@ export default function CreateTodo({user,toDos,setToDos}){
         setToDos([newTodo,...toDos])
     }
 
-    return(
-        <form onSubmit={e => e.preventDefault()}>
+    return(//handecreate
+        <form onSubmit={e => {e.preventDefault();handleCreate}}>{/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}
+
             <div>Author: <b>{user}</b></div>
             <div>
                 <label htmlFor="create-title">Title:</label>
                 <input type="text" valule={title} onChange={handleTitle} name="create-title" id="create-title"/>
             </div>
             <textarea value={description} onChange={handleDescription}/>
-            <input type="submit" value="Create" onChange={handleCreate} disabled={title.length === 0}/>
+            <input type="submit" value="Create" disabled={title.length === 0}/>
         </form>
     )
 }

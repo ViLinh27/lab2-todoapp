@@ -18,7 +18,11 @@ export default function Register({setUser}){
             <input type="password" name="register-password-repeat" id="register-password-repeat" value={formData.passwordRepeat}
             onChange={e => setFormData({...formData, passwordRepeat : e.target.value})} />
 
-            <input type="submit" value="Register" disabled={formData.username.length===0 || formData.password.length === 0 || formData.password !== formData.passwordRepeat}/>
+            <input type="submit" value="Register" 
+                disabled={formData.username.length===0 || 
+                formData.password.length === 0 || 
+                formData.password !== 
+                formData.passwordRepeat}/>
         </form>
     )
 }

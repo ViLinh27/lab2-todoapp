@@ -3,20 +3,32 @@ import {useState} from 'react';
 
 export default function CreateTodo({user,toDos,setToDos}){
     //const [todos, setTodos] = useState('')
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
 
     function handleTitle (evt) {setTitle(evt.target.value)}
 
     function handleDescription (evt) {setDescription(evt.target.value)}
 
-    function handleCreate(){
+   /*  function handleCreate(){
         const newTodo = {title,description, author:user}
         setToDos([newTodo,...toDos])
-    }
+    } */
 
     return(//handecreate
-        <form onSubmit={e => {e.preventDefault();handleCreate}}>{/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}
+        <form  
+            onSubmit={e => 
+                {
+                    e.preventDefault();
+                    const newTodo = {
+                        title,
+                        description,
+                        author: user,
+                    };
+
+                    setToDos([newTodo, ...toDos]);
+                }
+        }> {/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}
 
             <div>Author: <b>{user}</b></div>
             <div>

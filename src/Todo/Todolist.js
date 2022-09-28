@@ -12,3 +12,4 @@ export default function Todolist({todos=[]}){
         </div>
     )
 }
+//typically key of component in list is database identifier for each to do

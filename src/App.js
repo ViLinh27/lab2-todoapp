@@ -7,21 +7,31 @@ import CreateTodo from './Todo/CreateTodo';
 import {useState} from 'react';
 
 function App() {
-  const initialTodos={
-    title: "first post",
-    content: "content 1",
-    //author: "paul"
-  } 
+  const initialTodos=[
+    {
+      title: "first post",
+      description: "content 1",
+      //author: "paul"
+    } ,
+    {
+      title: "second todo",
+      description: "content 2",
+    },
 
-  const [user,setUser] =useState('')
-  const [toDos, setToDos] = useState(initialTodos)
+  ];
+
+  const [user,setUser] =useState('');
+  const [toDos, setToDos] = useState(initialTodos);
 
   return (
     <div className="App">
       <header>
         <div>
-          <UserBar user={user && <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/>} setUser={setUser}/>
-          <Todolist/>
+
+          <UserBar user={user} setUser={setUser}/>
+          <Todolist toDos={toDos}/>
+          {user && <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/>}
+          {/* <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/> */}
         </div>
       </header>
     </div>

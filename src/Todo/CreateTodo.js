@@ -5,11 +5,14 @@ export default function CreateTodo({user,toDos,setToDos}){
     //const [todos, setTodos] = useState('')
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [dateCreated, setDateCreated] = useState(Date());
+    // const [dateCompleted, setDateCompleted] = useState('');
 
-    function handleTitle (evt) {setTitle(evt.target.value)}
+    function handleTitle (evt) {setTitle(evt.target.value)};
 
-    function handleDescription (evt) {setDescription(evt.target.value)}
+    function handleDescription (evt) {setDescription(evt.target.value)};
 
+    // function handleDateCreated (evt) {setDateCreated(evt.target.value)};
    /*  function handleCreate(){
         const newTodo = {title,description, author:user}
         setToDos([newTodo,...toDos])
@@ -22,10 +25,11 @@ export default function CreateTodo({user,toDos,setToDos}){
                     e.preventDefault();
                     const newTodo = {
                         title,
+                        dateCreated,
                         description,
                         author: user,
                     };
-
+                    setDateCreated();
                     setToDos([newTodo, ...toDos]);
                 }
         }> {/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}

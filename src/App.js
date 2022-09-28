@@ -29,7 +29,8 @@ function App() {
         <div>
 
           <UserBar user={user} setUser={setUser}/>
-          <Todolist toDos={toDos}/>
+          {/* {user && <Todolist toDos={toDos} setToDos={setToDos}/>} */}
+          <Todolist toDos={toDos} setToDos={setToDos}/>
           {user && <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/>}
           {/* <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/> */}
         </div>

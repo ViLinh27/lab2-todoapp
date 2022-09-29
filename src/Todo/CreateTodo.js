@@ -46,7 +46,7 @@ export default function CreateTodo({user,toDos,setToDos}){
             </div>
             <textarea value={description} onChange={handleDescription}/>
             <div>
-                Complete:
+                <label htmlFor="complete">Complete:</label>
                 <input type="checkbox" onChange={handleComplete} complete={complete}/>
             </div>
             

@@ -11,11 +11,12 @@ function App() {
     {
       title: "first post",
       description: "content 1",
-      //author: "paul"
+      author: "111"
     } ,
     {
       title: "second todo",
       description: "content 2",
+      author: "222"
     },
 
   ];

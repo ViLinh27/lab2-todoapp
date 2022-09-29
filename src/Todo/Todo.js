@@ -14,7 +14,7 @@ export default function Todo({title,description,author,dateCreated,complete}){
     return(
         <div>
             <h3>{title}</h3>
-            <div>{dateCreated}</div>
+            <div>Created: {dateCreated}</div>
             {/* <div>{dateCompleted}</div> */}
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>

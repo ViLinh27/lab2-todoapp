@@ -45,7 +45,11 @@ export default function CreateTodo({user,toDos,setToDos}){
                 <input type="text" valule={title} onChange={handleTitle} name="create-title" id="create-title"/>
             </div>
             <textarea value={description} onChange={handleDescription}/>
-            <input type="checkbox" onChange={handleComplete} complete={complete}/>
+            <div>
+                Complete:
+                <input type="checkbox" onChange={handleComplete} complete={complete}/>
+            </div>
+            
             <input type="submit" value="Create" disabled={title.length === 0}/>
         </form>
     )

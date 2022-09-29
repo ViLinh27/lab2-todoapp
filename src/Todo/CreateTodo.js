@@ -7,10 +7,13 @@ export default function CreateTodo({user,toDos,setToDos}){
     const [description, setDescription] = useState('');
     const [dateCreated, setDateCreated] = useState(Date());
     // const [dateCompleted, setDateCompleted] = useState('');
+    const [complete,setComplete] = useState(false);
 
     function handleTitle (evt) {setTitle(evt.target.value)};
 
     function handleDescription (evt) {setDescription(evt.target.value)};
+
+    function handleComplete (evt) {setComplete(!complete)};
 
     // function handleDateCreated (evt) {setDateCreated(evt.target.value)};
    /*  function handleCreate(){
@@ -28,8 +31,10 @@ export default function CreateTodo({user,toDos,setToDos}){
                         dateCreated,
                         description,
                         author: user,
+                        complete: complete.toString(),
                     };
                     setDateCreated();
+                    setComplete();
                     setToDos([newTodo, ...toDos]);
                 }
         }> {/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}
@@ -40,6 +45,7 @@ export default function CreateTodo({user,toDos,setToDos}){
                 <input type="text" valule={title} onChange={handleTitle} name="create-title" id="create-title"/>
             </div>
             <textarea value={description} onChange={handleDescription}/>
+            <input type="checkbox" onChange={handleComplete} complete={complete}/>
             <input type="submit" value="Create" disabled={title.length === 0}/>
         </form>
     )

@@ -5,18 +5,21 @@ import Todolist from './Todo/Todolist';
 import UserBar from './User/UserBar';
 import CreateTodo from './Todo/CreateTodo';
 import {useState} from 'react';
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const initialTodos=[
     {
       title: "first post",
       description: "content 1",
-      author: "111"
+      author: "111",
+      id: uuidv4(),
     } ,
     {
       title: "second todo",
       description: "content 2",
-      author: "222"
+      author: "222",
+      id: uuidv4(),
     },
 
   ];

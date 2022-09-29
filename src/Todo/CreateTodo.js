@@ -1,5 +1,6 @@
 //make a to do to add to todolist
 import {useState} from 'react';
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreateTodo({user,toDos,setToDos}){
     //const [todos, setTodos] = useState('')
@@ -32,6 +33,7 @@ export default function CreateTodo({user,toDos,setToDos}){
                         description,
                         author: user,
                         complete: complete.toString(),
+                        id: uuidv4(),
                     };
                     setDateCreated();
                     setComplete();

@@ -7,7 +7,7 @@ import Todo from './Todo';
 export default function Todolist({toDos=[]}){
     return(
         <div>   
-            {toDos.map((t,i) =><Todo {...t} key={'todo-'+i}/>)}
+            {toDos.map((t,i) =><Todo {...t} key={t.id}/>)}
             {/*destructure todos array and spread over  todo component with each property */}
         </div>
     )

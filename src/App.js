@@ -1,4 +1,4 @@
-//import logo from './logo.svg';
+//idoes our app need specific global state?
 import './App.css';
 import React from 'react';
 import Todolist from './Todo/Todolist';
@@ -6,6 +6,11 @@ import UserBar from './User/UserBar';
 import CreateTodo from './Todo/CreateTodo';
 import {useState} from 'react';
 import { v4 as uuidv4 } from "uuid";
+
+//down the road:
+//register we will need persistence
+//login: validate the data
+//data persistence for create todo
 
 function App() {
   const initialTodos=[
@@ -23,7 +28,7 @@ function App() {
     },
 
   ];
-
+  //global states:
   const [user,setUser] =useState('');
   const [toDos, setToDos] = useState(initialTodos);
 

@@ -1,13 +1,13 @@
 import {useState} from 'react';
 
-export default function Register({setUser}){
+export default function Register({setUser}){  //replace setUser with dispatch when deconstructing (passed from parent App.js)
     const [formData,setFormData] = useState({
         username:"",
         password: "",
         passwordRepeat: ""
     })
     return(
-        <form onSubmit={e => {e.preventDefault(); setUser(formData.username)}}>
+        <form onSubmit={e => {e.preventDefault(); setUser(formData.username)}}>{/*istad of setUser we call dispatch and the REGISTER action */}
             <label htmlFor="register-username">Username: </label>
             <input type="text" value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} name="register-username" id="register-username"/>
 

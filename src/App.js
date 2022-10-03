@@ -28,20 +28,30 @@ function App() {
     },
 
   ];
-  //global states:
+  //state hooks
   const [user,setUser] =useState('');
   const [toDos, setToDos] = useState(initialTodos);
+  //reducers would look like this:
+  /*
+    const [state,dispatch] = useReducer(appReducer,{
+      user:"",
+      toDos: initialTodos,
+    });
+  */
+ //both user and toDo reducer functions invoked thanks to useReducer (above)
+ //initial state for toDos is the array of toDos objects above.
+ //initialTodos wouldn't show up when logged in due to Todolist coming in as undefined for some reason. Couldn't 
+ //fix that in time.
 
   return (
     <div className="App">
       <header>
         <div>
-
+          {/*setUser would be replaced by dispatch props here in each component: */}
+          {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
           <UserBar user={user} setUser={setUser}/>
-          {/* {user && <Todolist toDos={toDos} setToDos={setToDos}/>} */}
           <Todolist toDos={toDos} setToDos={setToDos}/>
           {user && <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/>}
-          {/* <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/> */}
         </div>
       </header>
     </div>

@@ -22,6 +22,7 @@ function App() {
       description: "content 1",
       author: "111",
       complete: "true",
+      dateCompleted: "Tues Oct 4",
       id: uuidv4(),
     } ,
     {
@@ -30,6 +31,7 @@ function App() {
       description: "content 2",
       author: "222",
       complete: "false",
+      dateCompleted: "",
       id: uuidv4(),
     },
 

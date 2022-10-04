@@ -11,12 +11,12 @@
 //checkbox with complete boolean needed
 
 export default function Todo(
-    {title,description,author,dateCreated,complete}){
+    {title,description,author,dateCreated,complete, dateCompleted}){
     return(
         <div>
             <h3>{title}</h3>
-            <div>Created: {dateCreated}</div>
-            {/* <div>Completed: {dateCompleted}</div> */}
+            <div>Date Created: {dateCreated}</div>
+            <div>Date Completed: {dateCompleted}</div>
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>
             <div>Task Complete: {complete}</div>

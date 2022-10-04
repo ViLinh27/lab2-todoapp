@@ -2,17 +2,16 @@
 import {useState} from 'react';
 import { v4 as uuidv4 } from "uuid";
 
-export default function CreateTodo({user,toDos,setToDos}){
-    //const [todos, setTodos] = useState('')
+export default function CreateTodo({user,toDos,dispatch}){
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [dateCreated, setDateCreated] = useState(Date());
     // const [dateCompleted, setDateCompleted] = useState('');
     const [complete,setComplete] = useState(false);
 
-    function handleTitle (evt) {setTitle(evt.target.value)};
+    // function handleTitle (evt) {setTitle(evt.target.value)};
 
-    function handleDescription (evt) {setDescription(evt.target.value)};
+    // function handleDescription (evt) {setDescription(evt.target.value)};
 
     function handleComplete (evt) {setComplete(!complete)};
 
@@ -27,26 +26,25 @@ export default function CreateTodo({user,toDos,setToDos}){
             onSubmit={e => 
                 {
                     e.preventDefault();
-                    const newTodo = {
-                        title,
-                        dateCreated,
-                        description,
-                        author: user,
-                        complete: complete.toString(),
-                        id: uuidv4(),
-                    };
+                    dispatch({
+                        type:"CREATE_TODO",
+                        title:title,
+                        description:description,
+                        author:user,
+                        id:uuidv4(),
+                    });
+
                     setDateCreated();
                     setComplete();
-                    setToDos([newTodo, ...toDos]);
                 }
         }> {/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}
 
             <div>Author: <b>{user}</b></div>
             <div>
                 <label htmlFor="create-title">Title:</label>
-                <input type="text" valule={title} onChange={handleTitle} name="create-title" id="create-title"/>
+                <input type="text" valule={title} onChange={(e) => setTitle(e.target.value)} name="create-title" id="create-title"/>
             </div>
-            <textarea value={description} onChange={handleDescription}/>
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
             <div>
                 <label htmlFor="complete">Complete:</label>
                 <input type="checkbox" onChange={handleComplete} complete={complete}/>

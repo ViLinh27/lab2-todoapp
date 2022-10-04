@@ -23,10 +23,10 @@ function userReducer(state, action) {//reducer for user actions
 
 function toDoReducer(state, action){//reducer for toDo actions
     switch (action.type) {
-        case "CREATE_POST"://CreateTodo, Todolist and Todo components
+        case "CREATE_TODO"://CreateTodo, Todolist and Todo components
             const newPost = {
                 title: action.title,
-                content: action.content,
+                description: action.description,
                 author: action.author,
                 id: action.id,
             };

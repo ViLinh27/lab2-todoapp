@@ -1,11 +1,13 @@
 //idoes our app need specific global state?
 import './App.css';
-import React from 'react';
+//import React from 'react';
+import {useState,useReducer} from 'react';
+import { v4 as uuidv4 } from "uuid";
+import appReducer from "./reducer";
+
 import Todolist from './Todo/Todolist';
 import UserBar from './User/UserBar';
 import CreateTodo from './Todo/CreateTodo';
-import {useState} from 'react';
-import { v4 as uuidv4 } from "uuid";
 
 //down the road:
 //register we will need persistence
@@ -29,15 +31,15 @@ function App() {
 
   ];
   //state hooks
-  const [user,setUser] =useState('');
-  const [toDos, setToDos] = useState(initialTodos);
+  //const [user,setUser] =useState('');
+  //const [toDos, setToDos] = useState(initialTodos);
+
   //reducers would look like this:
-  /*
     const [state,dispatch] = useReducer(appReducer,{
       user:"",
       toDos: initialTodos,
     });
-  */
+  
  //both user and toDo reducer functions invoked thanks to useReducer (above)
  //initial state for toDos is the array of toDos objects above.
  //initialTodos wouldn't show up when logged in due to Todolist coming in as undefined for some reason. Couldn't 
@@ -49,9 +51,9 @@ function App() {
         <div>
           {/*setUser would be replaced by dispatch props here in each component: */}
           {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
-          <UserBar user={user} setUser={setUser}/>
-          <Todolist toDos={toDos} setToDos={setToDos}/>
-          {user && <CreateTodo user={user} toDos={toDos} setToDos={setToDos}/>}
+          <UserBar user={state.user} dispatch={dispatch}/>
+          <Todolist toDos={state.toDos}/>
+          {state.user && <CreateTodo user={state.user} toDos={state.toDos} dispatch={dispatch}/>}
         </div>
       </header>
     </div>

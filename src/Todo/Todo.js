@@ -10,7 +10,8 @@
 
 //checkbox with complete boolean needed
 
-export default function Todo({title,description,author,dateCreated,complete,dateCompleted}){
+export default function Todo(
+    {title,description,author,dateCreated,complete}){
     return(
         <div>
             <h3>{title}</h3>

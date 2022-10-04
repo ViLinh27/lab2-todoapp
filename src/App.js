@@ -20,12 +20,14 @@ function App() {
       title: "first post",
       description: "content 1",
       author: "111",
+      complete: "true",
       id: uuidv4(),
     } ,
     {
       title: "second todo",
       description: "content 2",
       author: "222",
+      complete: "false",
       id: uuidv4(),
     },
 

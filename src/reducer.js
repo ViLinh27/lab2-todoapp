@@ -28,6 +28,7 @@ function toDoReducer(state, action){//reducer for toDo actions
                 title: action.title,
                 description: action.description,
                 author: action.author,
+                complete:action.complete,
                 id: action.id,
             };
             return [newPost, ...state];//the new new task/todo

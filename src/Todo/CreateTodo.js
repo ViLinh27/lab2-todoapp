@@ -31,11 +31,12 @@ export default function CreateTodo({user,toDos,dispatch}){
                         title:title,
                         description:description,
                         author:user,
+                        complete: complete.toString(),
                         id:uuidv4(),
                     });
 
                     setDateCreated();
-                    setComplete();
+                    //setComplete();
                 }
         }> {/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}
 

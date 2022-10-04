@@ -18,6 +18,7 @@ function App() {
   const initialTodos=[
     {
       title: "first post",
+      dateCreated: "Tues Oct 4",
       description: "content 1",
       author: "111",
       complete: "true",
@@ -25,6 +26,7 @@ function App() {
     } ,
     {
       title: "second todo",
+      dateCreated: "Tues Oct 4",
       description: "content 2",
       author: "222",
       complete: "false",

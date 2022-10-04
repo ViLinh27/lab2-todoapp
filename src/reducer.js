@@ -26,6 +26,7 @@ function toDoReducer(state, action){//reducer for toDo actions
         case "CREATE_TODO"://CreateTodo, Todolist and Todo components
             const newPost = {
                 title: action.title,
+                dateCreated: action.dateCreated,
                 description: action.description,
                 author: action.author,
                 complete:action.complete,

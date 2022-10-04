@@ -29,13 +29,14 @@ export default function CreateTodo({user,toDos,dispatch}){
                     dispatch({
                         type:"CREATE_TODO",
                         title:title,
+                        dateCreated:dateCreated.toString(),
                         description:description,
                         author:user,
                         complete: complete.toString(),
                         id:uuidv4(),
                     });
 
-                    setDateCreated();
+                    //setDateCreated();
                     //setComplete();
                 }
         }> {/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}

@@ -21,7 +21,7 @@ function App() {
       dateCreated: "Tues Oct 4",
       description: "content 1",
       author: "111",
-      complete: "true",
+      complete: false,
       dateCompleted: "Tues Oct 4",
       id: uuidv4(),
     } ,
@@ -30,7 +30,7 @@ function App() {
       dateCreated: "Tues Oct 4",
       description: "content 2",
       author: "222",
-      complete: "false",
+      complete: false,
       dateCompleted: "",
       id: uuidv4(),
     },
@@ -55,6 +55,10 @@ function App() {
     dispatch({type:"DELETE_TODO",id});
   }
 
+  /* function handleComplete(id){
+    dispatch({type: "TOGGLE_TODO", id});
+  } */
+
   return (
     <div className="App">
       <header>
@@ -62,8 +66,8 @@ function App() {
           {/*setUser would be replaced by dispatch props here in each component: */}
           {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
           <UserBar user={state.user} dispatch={dispatch}/>
-          <Todolist toDos={state.toDos} onRemove={handleRemove}/>
-          {state.user && <CreateTodo user={state.user} toDos={state.toDos} dispatch={dispatch}/>}
+          <Todolist toDos={state.toDos} onRemove={handleRemove}/>{/*add in prop for complete toggle */}
+          {state.user && <CreateTodo user={state.user} toDos={state.toDos} dispatch={dispatch} />}{/*not sure if this is needed: onClick={() => onComplete(item.id)} */}
         </div>
       </header>
     </div>

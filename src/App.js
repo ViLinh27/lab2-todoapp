@@ -51,6 +51,10 @@ function App() {
  //initialTodos wouldn't show up when logged in due to Todolist coming in as undefined for some reason. Couldn't 
  //fix that in time.
 
+  function handleRemove(id){
+    dispatch({type:"DELETE_TODO",id});
+  }
+
   return (
     <div className="App">
       <header>
@@ -58,7 +62,7 @@ function App() {
           {/*setUser would be replaced by dispatch props here in each component: */}
           {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
           <UserBar user={state.user} dispatch={dispatch}/>
-          <Todolist toDos={state.toDos}/>
+          <Todolist toDos={state.toDos} onRemove={handleRemove}/>
           {state.user && <CreateTodo user={state.user} toDos={state.toDos} dispatch={dispatch}/>}
         </div>
       </header>

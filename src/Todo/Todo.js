@@ -11,7 +11,7 @@
 //checkbox with complete boolean needed
 
 export default function Todo(
-    {title,description,author,dateCreated,complete, dateCompleted}){
+    {title,description,author,dateCreated,complete, dateCompleted, onRemove,item}){
     return(
         <div>
             <h3>{title}</h3>
@@ -20,6 +20,7 @@ export default function Todo(
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>
             <div>Task Complete: {complete}</div>
+            <button type="button" onClick={() => onRemove(item.id)}>Remove</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}
         </div>
     )
 }

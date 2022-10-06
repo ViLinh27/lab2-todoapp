@@ -1,7 +1,7 @@
 //idoes our app need specific global state?
 import './App.css';
 //import React from 'react';
-import {useState,useReducer} from 'react';
+import {useReducer} from 'react';//don't need the useState i guess
 import { v4 as uuidv4 } from "uuid";
 import appReducer from "./reducer";
 

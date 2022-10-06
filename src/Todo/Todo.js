@@ -20,7 +20,7 @@ export default function Todo(
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>
             <div>Task Complete: {complete}</div>
-            <button type="button" onClick={() => onRemove(item.id)}>Remove</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}
+            <button type="button" onClick={() => onRemove(item.id)}>Delete</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}
         </div>
     )
 }

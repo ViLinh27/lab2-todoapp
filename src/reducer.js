@@ -38,7 +38,10 @@ function toDoReducer(state, action){//reducer for toDo actions
             return state.map(
               (item) => {
                 if(item.id === action.id){
-                  return{...item, complete: !item.complete };
+                  return{...item, 
+                          complete: !item.complete, 
+                          dateCompleted: action.dateCompleted 
+                        };
                 }else{
                   return item;
                 }

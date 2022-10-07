@@ -6,7 +6,7 @@ export default function CreateTodo({user,toDos,dispatch}){
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [dateCreated, setDateCreated] = useState(Date());
-    const [dateCompleted, setDateCompleted] = useState(Date());
+    //const [dateCompleted, setDateCompleted] = useState(Date());
     const [complete,setComplete] = useState(false);
 
     // function handleTitle (evt) {setTitle(evt.target.value)};

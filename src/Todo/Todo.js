@@ -8,10 +8,9 @@
 //complete(boolean)
 //dateCompleted() - dynamic
 
-//checkbox with complete boolean needed
-
+//pass in onComplete from todolist component
 export default function Todo(
-    {title,description,author,dateCreated,complete, dateCompleted, onRemove,item,onComplete}){{/*pass in onComplete prop from todolist */}
+    {title,description,author,dateCreated,complete, dateCompleted, onRemove,item,onComplete}){
     return(
         <div>
             <h3>{title}</h3>

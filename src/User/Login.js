@@ -4,7 +4,7 @@ export default function Login({dispatch}){//deconstruct dispatch instead of setU
     const[username,setUsername] = useState('')
 
     return(
-        <form onSubmit={e => {e.preventDefault(); 
+        <form className="Form-log" onSubmit={e => {e.preventDefault(); 
             dispatch({ type: "LOGIN", username});
             }}
         > {/*instead of setUser call dispatch here: dispatch({type: "LOGIN", username}) */}

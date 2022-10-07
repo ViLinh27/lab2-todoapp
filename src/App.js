@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header className="App-header">
         <div>
           {/*setUser would be replaced by dispatch props here in each component: */}
           {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}

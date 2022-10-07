@@ -19,7 +19,7 @@ export default function Register({dispatch}){  //replace setUser with dispatch w
     }
 
     return(
-        <form onSubmit={
+        <form className="Form-log" onSubmit={
             e => {
                 e.preventDefault(); 
                 dispatch({type:"REGISTER", username});

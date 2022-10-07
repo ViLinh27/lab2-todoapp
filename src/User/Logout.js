@@ -1,6 +1,6 @@
 export default function Logout({user,dispatch}){//instead of setUser, deconstruct dispatch : Logout({user, dispatch})
     return(
-        <form onSubmit={
+        <form className="Form-log" onSubmit={
             e => {e.preventDefault(); 
             dispatch({ type: "LOGOUT"});
         }}>{/*instead of setUser call dispatch with correct case: dispatch({type: "LOGOUT"}) */}

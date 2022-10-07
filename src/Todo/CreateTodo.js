@@ -32,7 +32,7 @@ export default function CreateTodo({user,toDos,dispatch}){
                         dateCreated:dateCreated.toString(),
                         description:description,
                         author:user,
-                        complete: complete.toString(),
+                        complete: complete,
                         dateCompleted:complete ? dateCompleted.toString() : "",
                         id:uuidv4(),
                     });
@@ -48,10 +48,10 @@ export default function CreateTodo({user,toDos,dispatch}){
                 <input type="text" valule={title} onChange={(e) => setTitle(e.target.value)} name="create-title" id="create-title"/>
             </div>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
-            <div>
+            {/* <div>
                 <label htmlFor="complete">Complete:</label>
                 <input type="checkbox" onChange={handleComplete} complete={complete}/>
-            </div>
+            </div> */}
             
             <input type="submit" value="Create" disabled={title.length === 0}/>
         </form>

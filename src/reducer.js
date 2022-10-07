@@ -29,7 +29,7 @@ function toDoReducer(state, action){//reducer for toDo actions
                 dateCreated: action.dateCreated,
                 description: action.description,
                 author: action.author,
-                //complete:action.complete,
+                complete:action.complete,
                 //dateCompleted: action.dateCompleted,
                 id: action.id,
             };

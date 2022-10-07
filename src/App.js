@@ -22,7 +22,7 @@ function App() {
       description: "content 1",
       author: "111",
       complete: false,
-      dateCompleted: "Tues Oct 4",
+      dateCompleted: "",
       id: uuidv4(),
     } ,
     {

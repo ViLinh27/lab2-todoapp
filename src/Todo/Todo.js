@@ -15,7 +15,7 @@ export default function Todo(
 
         const [dateCompleted, setDateCompleted] = useState(Date());
     return(
-        <div>
+        <div className="Form-todo">
             <h3>{title}</h3>
             <div>Date Created: {dateCreated}</div>
             <div>Date Completed: {item.complete ? dateCompleted.toString() : ""}</div>

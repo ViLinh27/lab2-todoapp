@@ -13,7 +13,7 @@ export default function CreateTodo({user,toDos,dispatch}){
 
     // function handleDescription (evt) {setDescription(evt.target.value)};
 
-    function handleComplete (evt) {setComplete(!complete)};
+    //function handleComplete (evt) {setComplete(!complete)};
 
     // function handleDateCreated (evt) {setDateCreated(evt.target.value)};
    /*  function handleCreate(){

@@ -8,14 +8,17 @@
 //complete(boolean)
 //dateCompleted() - dynamic
 
+import { useState } from 'react';
 //pass in onComplete from todolist component
 export default function Todo(
-    {title,description,author,dateCreated,complete, dateCompleted, onRemove,item,onComplete}){
+    {title,description,author,dateCreated,complete, onRemove,item,onComplete}){
+
+        const [dateCompleted, setDateCompleted] = useState(Date());
     return(
         <div>
             <h3>{title}</h3>
             <div>Date Created: {dateCreated}</div>
-            <div>Date Completed: {dateCompleted}</div>
+            <div>Date Completed: {item.complete ? dateCompleted.toString() : ""}</div>
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>
             <div >Task Complete: <input type="checkbox" onChange={() => onComplete(item.id)}/> {item.complete.toString()}</div>

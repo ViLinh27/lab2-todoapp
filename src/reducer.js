@@ -35,7 +35,15 @@ function toDoReducer(state, action){//reducer for toDo actions
             };
             return [newPost, ...state];//the new new task/todo
         case "TOGGLE_TODO":
-            return "";
+            return state.map(
+              (item) => {
+                if(item.id === action.id){
+                  return{...item, complete: !item.complete };
+                }else{
+                  return item;
+                }
+              }
+            );
         case "DELETE_TODO":
             return state.filter((item) => item.id !== action.id);
         default:

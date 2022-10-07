@@ -33,7 +33,7 @@ export default function CreateTodo({user,toDos,dispatch}){
                         description:description,
                         author:user,
                         complete: complete,
-                        dateCompleted:complete ? dateCompleted.toString() : "",
+                        dateCompleted:"",//fix later
                         id:uuidv4(),
                     });
 

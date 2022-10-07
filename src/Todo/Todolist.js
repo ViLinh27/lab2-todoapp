@@ -7,7 +7,7 @@ import Todo from './Todo';
 export default function Todolist({toDos=[], onRemove,onComplete}){{/*onComplete prop passed in from App.js */}
     return(
         <div>   
-            {toDos.map((t) =><Todo {...t} key={t.id} onRemove={onRemove} item={t} />)}{/*pass in onComplete prop for toggle reducer */}
+            {toDos.map((t) =><Todo {...t} key={t.id} onRemove={onRemove} item={t} onComplete={onComplete}/>)}{/*pass in onComplete prop for toggle reducer */}
             {/*destructure todos array and spread over  todo component with each property */}
         </div>
     )

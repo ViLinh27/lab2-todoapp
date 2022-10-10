@@ -13,7 +13,7 @@ import { useState } from 'react';
 export default function Todo(
     {title,description,author,dateCreated,complete, onRemove,item,onComplete}){
 
-        const [dateCompleted, setDateCompleted] = useState(Date());
+        const [dateCompleted] = useState(Date());
     return(
         <div className="Form-todo">
             <h3>{title}</h3>

@@ -79,7 +79,7 @@ function App() {
           <ThemeContext.Provider value={{ primaryColor:'coral' }}>
             <Header title="My Todo" />
             <ThemeContext.Provider value={{primaryColor: 'deepskyblue'}}>
-              <Header title="Subheader"/>
+              <Header title="App"/>
             </ThemeContext.Provider>
           </ThemeContext.Provider>
           {/*setUser would be replaced by dispatch props here in each component: */}

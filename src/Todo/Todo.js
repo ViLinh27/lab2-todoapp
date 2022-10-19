@@ -8,15 +8,18 @@
 //complete(boolean)
 //dateCompleted() - dynamic
 
-import { useState } from 'react';
+import React, { useState,useContext } from 'react';
+import {ThemeContext} from '../contexts';
+
 //pass in onComplete from todolist component
 export default function Todo(
     {title,description,author,dateCreated,complete, onRemove,item,onComplete}){
-
-        const [dateCompleted] = useState(Date());
+    
+    const {secondaryColor} = useContext(ThemeContext);
+    const [dateCompleted] = useState(Date());
     return(
         <div className="Form-todo">
-            <h3>{title}</h3>
+            <h3 style={{color:secondaryColor}}>{title}</h3>
             <div>Date Created: {dateCreated}</div>
             <div>Date Completed: {item.complete ? dateCompleted.toString() : ""}</div>
             <div>{description}</div>

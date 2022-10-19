@@ -1,7 +1,6 @@
 //idoes our app need specific global state?
 import './App.css';
-import React, {useEffect} from 'react';
-import {useReducer} from 'react';//don't need the useState i guess
+import React, {useEffect,useReducer,useState} from 'react';
 import { v4 as uuidv4 } from "uuid";
 import appReducer from "./reducer";
 
@@ -10,6 +9,7 @@ import UserBar from './User/UserBar';
 import CreateTodo from './Todo/CreateTodo';
 import {ThemeContext} from "./contexts";
 import Header from "./Header";
+import ChangeTheme from "./ChangeTheme";
 
 //down the road:
 //register we will need persistence
@@ -64,6 +64,11 @@ function App() {
         }
       }, [user]);
 
+  const [theme, setTheme] = useState({
+   primaryColor: "deepskyblue",
+    secondaryColor: "coral",
+  })
+
   function handleRemove(id){
     dispatch({type:"DELETE_TODO",id});
   }
@@ -76,17 +81,22 @@ function App() {
     <div className="App">
       {/* <header className="App-header"> */}
         <div className="App-header">
-          <ThemeContext.Provider value={{ primaryColor:'coral' }}>
+          <ThemeContext.Provider value={ theme }>
             <Header title="My Todo" />
-            <ThemeContext.Provider value={{primaryColor: 'deepskyblue'}}>
+            <ThemeContext.Provider value={ theme }>
               <Header title="App"/>
             </ThemeContext.Provider>
+
+            <ChangeTheme theme={theme} setTheme={setTheme} />
+            
+            {/*setUser would be replaced by dispatch props here in each component: */}
+            {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
+            <UserBar user={state.user} dispatch={dispatch}/>
+            <Todolist toDos={state.toDos} onRemove={handleRemove} onComplete={handleComplete}/>{/*add in prop for complete toggle */}
+            {state.user && <CreateTodo user={state.user} toDos={state.toDos} dispatch={dispatch} />}{/*not sure if this is needed: onClick={() => onComplete(item.id)} */}
+
           </ThemeContext.Provider>
-          {/*setUser would be replaced by dispatch props here in each component: */}
-          {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
-          <UserBar user={state.user} dispatch={dispatch}/>
-          <Todolist toDos={state.toDos} onRemove={handleRemove} onComplete={handleComplete}/>{/*add in prop for complete toggle */}
-          {state.user && <CreateTodo user={state.user} toDos={state.toDos} dispatch={dispatch} />}{/*not sure if this is needed: onClick={() => onComplete(item.id)} */}
+          
         </div>
       {/* </header> */}
     </div>

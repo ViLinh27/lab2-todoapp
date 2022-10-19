@@ -1,13 +1,18 @@
 //make a to do to add to todolist
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 import { v4 as uuidv4 } from "uuid";
 
-export default function CreateTodo({user,toDos,dispatch}){
+import {StateContext} from "../contexts";
+
+export default function CreateTodo(){
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [dateCreated, setDateCreated] = useState(Date());
     const [dateCompleted, setDateCompleted] = useState(Date());
     const [complete,setComplete] = useState(false);
+
+    const {state, dispatch} = useContext(StateContext);
+    const {user} =state;
 
     // function handleTitle (evt) {setTitle(evt.target.value)};
 

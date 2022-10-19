@@ -95,7 +95,7 @@ function App() {
             
               {/*setUser would be replaced by dispatch props here in each component: */}
               {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
-              <UserBar user={state.user} dispatch={dispatch}/>
+              <UserBar />
               <br/>
 
               <Todolist />{/*add in prop for complete toggle */}

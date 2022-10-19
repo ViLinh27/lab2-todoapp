@@ -1,4 +1,10 @@
-export default function Logout({user,dispatch}){//instead of setUser, deconstruct dispatch : Logout({user, dispatch})
+import { StateContext } from "../contexts";
+import {useContext} from "react";
+
+export default function Logout(){//instead of setUser, deconstruct dispatch : Logout({user, dispatch})
+    const {state,dispatch}  = useContext(StateContext);
+    const {user} = state;
+    
     return(
         <form className="Form-log" onSubmit={
             e => {e.preventDefault(); 

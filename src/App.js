@@ -1,6 +1,6 @@
 //idoes our app need specific global state?
 import './App.css';
-//import React from 'react';
+import React, {useEffect} from 'react';
 import {useReducer} from 'react';//don't need the useState i guess
 import { v4 as uuidv4 } from "uuid";
 import appReducer from "./reducer";
@@ -36,6 +36,7 @@ function App() {
     },
 
   ];
+
   //state hooks
   //const [user,setUser] =useState('');
   //const [toDos, setToDos] = useState(initialTodos);
@@ -45,11 +46,21 @@ function App() {
       user:"",
       toDos: initialTodos,
     });
-  
- //both user and toDo reducer functions invoked thanks to useReducer (above)
- //initial state for toDos is the array of toDos objects above.
- //initialTodos wouldn't show up when logged in due to Todolist coming in as undefined for some reason. Couldn't 
- //fix that in time.
+    //both user and toDo reducer functions invoked thanks to useReducer (above)
+    //initial state for toDos is the array of toDos objects above.
+    //initialTodos wouldn't show up when logged in due to Todolist coming in as undefined for some reason. Couldn't 
+    //fix that in time.
+
+    const {user} = state;
+
+    useEffect(() => {
+        if (user) {
+          document.title = `${user}’s Blog`
+        } 
+        else {
+          document.title = 'Blog'
+        }
+      }, [user]);
 
   function handleRemove(id){
     dispatch({type:"DELETE_TODO",id});

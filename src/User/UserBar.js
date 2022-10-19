@@ -19,7 +19,7 @@ export default function UserBar(){//instead of setUser it would have to be dispa
                      <Login />{/*replace setUser with dispatch prop here: dispatch={dispatch} */}
                 </div>
                 <div className="userInput">
-                    <Register dispatch={dispatch}/>{/*replace setUser with dispatch prop here: dispatch={dispatch} */}
+                    <Register />{/*replace setUser with dispatch prop here: dispatch={dispatch} */}
                 </div>
                
                 

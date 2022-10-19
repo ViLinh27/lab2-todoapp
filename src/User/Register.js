@@ -1,15 +1,13 @@
-import {useState} from 'react';
+import {useState, useContext,useEffect} from 'react';
+import {StateContext} from '../contexts';
 
-export default function Register({dispatch}){  //replace setUser with dispatch when deconstructing (passed from parent App.js)
-   /*  const [formData,setFormData] = useState({
-        username:"",
-        password: "",
-        passwordRepeat: ""
-    }) */
+export default function Register(){  //replace setUser with dispatch when deconstructing (passed from parent App.js)
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordRepeat, setPasswordRepeat] = useState("");
+
+    const {dispatch} = useContext(StateContext);
 
     function handlePassword(evt) {
         setPassword(evt.target.value);
@@ -17,7 +15,7 @@ export default function Register({dispatch}){  //replace setUser with dispatch w
     function handlePasswordRepeat(evt) {
         setPasswordRepeat(evt.target.value);
     }
-
+    
     return(
         <form className="Form-log" onSubmit={
             e => {

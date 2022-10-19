@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react';
+import React, {useState,useContext,useEffect} from 'react';
 import {StateContext} from "../contexts";
 
 export default function Login(){//deconstruct dispatch instead of setUser
@@ -6,6 +6,11 @@ export default function Login(){//deconstruct dispatch instead of setUser
 
     const {dispatch} = useContext(StateContext);
     
+    // useEffect(
+    //     ()=>{
+    //         dispatch({ type: "LOGIN", username});
+    //     },[]
+    // );
     return(
         <form className="Form-log" onSubmit={e => {e.preventDefault(); 
             dispatch({ type: "LOGIN", username});

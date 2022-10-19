@@ -69,13 +69,13 @@ function App() {
     secondaryColor: "coral",
   })
 
-  function handleRemove(id){
+  /* function handleRemove(id){
     dispatch({type:"DELETE_TODO",id});
   }
 
   function handleComplete(id){
     dispatch({type: "TOGGLE_TODO", id});
-  }
+  } */
 
   return (
     <div className="App">
@@ -98,7 +98,7 @@ function App() {
               <UserBar user={state.user} dispatch={dispatch}/>
               <br/>
 
-              <Todolist toDos={state.toDos} onRemove={handleRemove} onComplete={handleComplete}/>{/*add in prop for complete toggle */}
+              <Todolist />{/*add in prop for complete toggle */}
               {state.user && <CreateTodo />}{/*not sure if this is needed: onClick={() => onComplete(item.id)} */}
 
             </ThemeContext.Provider>

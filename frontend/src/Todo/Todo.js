@@ -24,7 +24,7 @@ export default function Todo(
             <div>Date Completed: {item.complete ? dateCompleted.toString() : ""}</div>
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>
-            <div >Task Complete: <input type="checkbox" onChange={() => onComplete(item.id)}/> {item.complete.toString()}</div>
+            <div >Task Complete: <input type="checkbox" onChange={() => onComplete(item.id)}/> {item.complete}</div>
             <button type="button" onClick={() => onRemove(item.id)}>Delete</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}
         </div>
     )

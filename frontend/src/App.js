@@ -17,52 +17,29 @@ import ChangeTheme from "./ChangeTheme";
 //data persistence for create todo
 
 function App() {
-  const initialTodos=[
-    {
-      title: "first post",
-      dateCreated: "Tues Oct 4",
-      description: "content 1",
-      author: "111",
-      complete: false,
-      dateCompleted: "",
-      id: uuidv4(),
-    } ,
-    {
-      title: "second todo",
-      dateCreated: "Tues Oct 4",
-      description: "content 2",
-      author: "222",
-      complete: false,
-      dateCompleted: "",
-      id: uuidv4(),
-    },
+  const initialTodos=[];
 
-  ];
+  const [state,dispatch] = useReducer(appReducer,{
+    user:"",
+    toDos: initialTodos,
+  });
 
-  //state hooks
-  //const [user,setUser] =useState('');
-  //const [toDos, setToDos] = useState(initialTodos);
+  useEffect(() => {
+    fetch('/api/toDos')
+    .then(result => result.json())
+    .then(toDos => dispatch({ type: 'FETCH_POSTS', toDos }))
+  }, [])
 
-  //reducers would look like this:
-    const [state,dispatch] = useReducer(appReducer,{
-      user:"",
-      toDos: initialTodos,
-    });
-    //both user and toDo reducer functions invoked thanks to useReducer (above)
-    //initial state for toDos is the array of toDos objects above.
-    //initialTodos wouldn't show up when logged in due to Todolist coming in as undefined for some reason. Couldn't 
-    //fix that in time.
+  const {user} = state;
 
-    const {user} = state;
-
-    useEffect(() => {
-        if (user) {
-          document.title = `${user}’s Blog`
-        } 
-        else {
-          document.title = 'Blog'
-        }
-      }, [user]);
+  useEffect(() => {
+      if (user) {
+        document.title = `${user}’s Blog`
+      } 
+      else {
+        document.title = 'Blog'
+      }
+    }, [user]);
 
   const [theme, setTheme] = useState({
    primaryColor: "deepskyblue",

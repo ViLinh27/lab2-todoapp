@@ -1,6 +1,7 @@
 //make a to do to add to todolist
 import {useState,useContext} from 'react';
 import { v4 as uuidv4 } from "uuid";
+import {useResource} from "react-request-hook";
 
 import {StateContext} from "../contexts";
 
@@ -13,6 +14,17 @@ export default function CreateTodo(){
 
     const {state, dispatch} = useContext(StateContext);
     const {user} =state;
+
+    const[toDo, createTodo] = useResource(({title,dateCreated,description,author}) =>({
+        url:"/toDos",
+        method:"post",
+        data:{title,dateCreated,description, author},
+    }));
+
+    function handleCreate(){
+        createTodo({title,dateCreated,description,author:user})
+        dispatch({type:"CREATE_TODO",title,dateCreated:dateCreated.toString(),description, author:user})
+    }
 
     // function handleTitle (evt) {setTitle(evt.target.value)};
 
@@ -31,16 +43,17 @@ export default function CreateTodo(){
             onSubmit={e => 
                 {
                     e.preventDefault();
-                    dispatch({
-                        type:"CREATE_TODO",
-                        title:title,
-                        dateCreated:dateCreated.toString(),
-                        description:description,
-                        author:user,
-                        complete: complete,
-                        dateCompleted:complete ? dateCompleted.toString : "",//fix later
-                        id:uuidv4(),
-                    });
+                    // dispatch({
+                    //     type:"CREATE_TODO",
+                    //     title:title,
+                    //     dateCreated:dateCreated.toString(),
+                    //     description:description,
+                    //     author:user,
+                    //     complete: complete,
+                    //     dateCompleted:complete ? dateCompleted.toString : "",//fix later
+                    //     id:uuidv4(),
+                    // });
+                    handleCreate();
 
                     //setDateCreated();
                     //setComplete();

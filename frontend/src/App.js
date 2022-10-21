@@ -1,8 +1,9 @@
 //idoes our app need specific global state?
 import './App.css';
 import React, {useEffect,useReducer,useState} from 'react';
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import appReducer from "./reducer";
+import { useResource } from 'react-request-hook';
 
 import Todolist from './Todo/Todolist';
 import UserBar from './User/UserBar';
@@ -24,27 +25,40 @@ function App() {
     toDos: initialTodos,
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     fetch('/api/toDos')
     .then(result => result.json())
     .then(toDos => dispatch({ type: 'FETCH_POSTS', toDos }))
-  }, [])
+  }, []) */
 
   const {user} = state;
 
   useEffect(() => {
       if (user) {
-        document.title = `${user}’s Blog`
+        document.title = `${user}’s Todo App`
       } 
       else {
-        document.title = 'Blog'
+        document.title = 'Todo App'
       }
     }, [user]);
 
+  const [ toDos, getToDos ] = useResource(() => ({
+    url: '/toDos',
+    method: 'get'
+  }))
+
   const [theme, setTheme] = useState({
-   primaryColor: "deepskyblue",
+    primaryColor: "deepskyblue",
     secondaryColor: "coral",
-  })
+  });
+
+  useEffect(getToDos, [])
+
+  useEffect(() => {
+    if (toDos && toDos.data) {
+      dispatch({ type: 'FETCH_POSTS', toDos: toDos.data.reverse() })
+    }
+  }, [toDos])
 
   /* function handleRemove(id){
     dispatch({type:"DELETE_TODO",id});

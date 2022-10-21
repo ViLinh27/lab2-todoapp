@@ -1,28 +1,65 @@
-import React,{useState, useEffect} from 'react'
+import React,{useEffect} from 'react'
 import ThemeItem from './ThemeItem'
+import { useResource } from 'react-request-hook';
 
-const THEMES = [
+/* const THEMES = [
     { primaryColor: 'deepskyblue', secondaryColor: 'coral' },
-    { primaryColor: 'orchid', secondaryColor: 'mediumseagreen' }
-]
+    { primaryColor: 'orchid', secondaryColor: 'mediumseagreen' },
+    { primaryColor: "green",secondaryColor: "yellow"}
+] */
 
 export default function ChangeTheme ({ theme, setTheme }) {
-    const [ themes, setThemes ] = useState([])
-    useEffect(() => {
+    const [ themes, getThemes ] = useResource(() => ({
+        url: "/themes",
+        method: "get",
+    }));
+
+    useEffect(getThemes,[]);
+    
+    const { data, isLoading } = themes;
+
+    /* useEffect(() => {
         fetch('/api/themes')
         .then(result => result.json())
         .then(themes => setThemes(themes))
-    }, [])
+    }, []) */
 
 
     function isActive (t) { 
-        return t.primaryColor === theme.primaryColor && t.secondaryColor === theme.secondaryColor 
+        return (
+            t.primaryColor === 
+            theme.primaryColor && t.secondaryColor === 
+            theme.secondaryColor 
+        );
     }
     return ( 
         <div>
+            {isLoading && ' Loading themes...'}
             Change theme:
-                {THEMES.map((t, i) =>
+
+                {/* {THEMES.map((t, i) =>
                 <ThemeItem key={'theme-' + i} theme={t} active={isActive(t)} onClick={() => setTheme(t)} />
-    )} </div>
-    )
+                )}  */}
+
+                {data &&
+                    data.map((t, i) => (
+                    <ThemeItem
+                        key={"theme-" + i}
+                        theme={t}
+                        active={isActive(t)}
+                        onClick={() => setTheme(t)}
+                    />
+                ))}{" "}
+
+                {/* {data &&
+                    THEMES.map((t, i) => (
+                    <ThemeItem
+                        key={"theme-" + i}
+                        theme={t}
+                        active={isActive(t)}
+                        onClick={() => setTheme(t)}
+                    />
+                ))}{" "} */}
+        </div>
+    );
 }

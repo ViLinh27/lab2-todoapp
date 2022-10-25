@@ -15,15 +15,15 @@ export default function CreateTodo(){
     const {state, dispatch} = useContext(StateContext);
     const {user} =state;
 
-    const[toDo, createTodo] = useResource(({title,dateCreated,description,author}) =>({
+    const[toDo, createTodo] = useResource(({title,dateCreated,complete,description,author}) =>({
         url:"/toDos",
         method:"post",
-        data:{title,dateCreated,description, author},
+        data:{title,dateCreated,complete,description, author},
     }));
 
     function handleCreate(){
-        createTodo({title,dateCreated,description,author:user})
-        dispatch({type:"CREATE_TODO",title,dateCreated:dateCreated.toString(),description, author:user})
+        createTodo({title,dateCreated,complete,description,author:user})
+        dispatch({type:"CREATE_TODO",title,dateCreated:dateCreated.toString(),complete,description, author:user})
     }
 
     // function handleTitle (evt) {setTitle(evt.target.value)};

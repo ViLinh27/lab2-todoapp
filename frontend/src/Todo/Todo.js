@@ -12,11 +12,14 @@ import React, { useState,useContext } from 'react';
 import {ThemeContext} from '../contexts';
 
 //pass in onComplete from todolist component
-export default function Todo(
+function Todo(
     {title,description,author,dateCreated,complete, onRemove,item,onComplete}){
     
     const {secondaryColor} = useContext(ThemeContext);
     const [dateCompleted] = useState(Date());
+
+    console.log("Todo rendered");
+
     return(
         <div className="Form-todo">
             <h3 style={{color:secondaryColor}}>{title}</h3>
@@ -27,5 +30,7 @@ export default function Todo(
             <div >Task Complete: <input type="checkbox" onChange={() => onComplete(item.id)}/> {item.complete}</div>
             <button type="button" onClick={() => onRemove(item.id)}>Delete</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}
         </div>
-    )
+    );
 }
+
+export default React.memo(Todo);

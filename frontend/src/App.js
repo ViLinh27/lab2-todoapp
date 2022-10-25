@@ -86,7 +86,10 @@ function App() {
             
               {/*setUser would be replaced by dispatch props here in each component: */}
               {/*would have to call state object then user property in some cases here (reducer) like this: state.user */}
-              <UserBar />
+              <React.Suspense fallback={"Loading..."}>
+                <UserBar />
+              </React.Suspense>
+              
               <br/>
 
               <Todolist />{/*add in prop for complete toggle */}

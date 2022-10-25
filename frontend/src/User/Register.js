@@ -1,5 +1,6 @@
 import {useState, useContext,useEffect} from 'react';
 import {StateContext} from '../contexts';
+import {useResource} from "react-request-hook";
 
 export default function Register(){  //replace setUser with dispatch when deconstructing (passed from parent App.js)
 
@@ -15,12 +16,25 @@ export default function Register(){  //replace setUser with dispatch when decons
     function handlePasswordRepeat(evt) {
         setPasswordRepeat(evt.target.value);
     }
+
+    const [user, register] = useResource((username, password) => ({
+        url: "/users",
+        method: "post",
+        data: { email: username, password },
+    }));
+
+    useEffect(() => {
+        if (user && user.data) {
+        dispatch({ type: "REGISTER", username: user.data.user.email });
+        }
+    }, [user]);
     
     return(
         <form className="Form-log" onSubmit={
             e => {
                 e.preventDefault(); 
-                dispatch({type:"REGISTER", username});
+                //dispatch({type:"REGISTER", username});
+                register(username,password);
             }}>{/*istad of setUser we call dispatch and the REGISTER action */}
 
             <label htmlFor="register-username">Username: </label>

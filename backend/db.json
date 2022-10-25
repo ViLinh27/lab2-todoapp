@@ -32,9 +32,34 @@
       "description": "last note content",
       "author": "cccc",
       "id": 5
+    },
+    {
+      "title": "newest note",
+      "dateCreated": "Mon Oct 24 2022 10:30:39 GMT-0500 (Central Daylight Time)",
+      "description": "newest content",
+      "author": "test@test.net",
+      "id": 6
+    },
+    {
+      "title": "yes this is a note",
+      "dateCreated": "Mon Oct 24 2022 14:45:21 GMT-0500 (Central Daylight Time)",
+      "description": "this is the note content",
+      "author": "test@test.net",
+      "id": 7
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "email": "test@test.net",
+      "password": "$2a$10$MgENvBL2DNqdGDWn5Bnq0ew2Z89Slgi61WEkuvbF02KWhkXjXb8US",
+      "id": 1
+    },
+    {
+      "email": "test2@test.net",
+      "password": "$2a$10$yprBoCk8axoJzyZkpBik5.TiBFRaPbAvalWOVWBChvVNAk8MYUAfa",
+      "id": 2
+    }
+  ],
   "themes": [
     {
       "id": 1,

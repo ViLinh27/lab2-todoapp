@@ -1,5 +1,5 @@
 //make a to do to add to todolist
-import {useState,useContext} from 'react';
+import {useState,useContext,useEffect} from 'react';
 import { v4 as uuidv4 } from "uuid";
 import {useResource} from "react-request-hook";
 
@@ -11,6 +11,7 @@ export default function CreateTodo(){
     const [dateCreated, setDateCreated] = useState(Date());
     const [dateCompleted, setDateCompleted] = useState(Date());
     const [complete,setComplete] = useState(false);
+    const [error,setError] = useState(false);
 
     const {state, dispatch} = useContext(StateContext);
     const {user} =state;
@@ -23,8 +24,36 @@ export default function CreateTodo(){
 
     function handleCreate(){
         createTodo({title,dateCreated,complete,description,author:user})
-        dispatch({type:"CREATE_TODO",title,dateCreated:dateCreated.toString(),complete,description, author:user})
+        /* dispatch({
+            type:"CREATE_TODO",
+            title:toDo?.data?.title,
+            dateCreated:toDo?.data?.dateCreated.toString(),
+            complete:toDo?.data?.complete,
+            description:toDo?.data?.description, 
+            author:toDo?.data?.author,
+            id:toDo?.data?.id
+        }); */
     }
+
+    useEffect(()=>{
+        if(toDo?.data?.error){
+            setError(true)
+        }
+        // console.log("use effect when todo changes");
+        // console.log("toDo: "+toDo);//object type Object
+        //console.log("toDo.data: "+toDo.data);
+        
+        dispatch({
+            type:"CREATE_TODO",
+            title:toDo?.data?.title,
+            dateCreated:toDo?.data?.dateCreated.toString(),
+            complete:toDo?.data?.complete,
+            description:toDo?.data?.description, 
+            author:toDo?.data?.author,
+            id:toDo?.data?.id
+        });
+
+    },[toDo]);
 
     // function handleTitle (evt) {setTitle(evt.target.value)};
 

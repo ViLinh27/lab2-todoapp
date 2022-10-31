@@ -24,48 +24,24 @@ export default function CreateTodo(){
 
     function handleCreate(){
         createTodo({title,dateCreated,complete,description,author:user})
-        /* dispatch({
-            type:"CREATE_TODO",
-            title:toDo?.data?.title,
-            dateCreated:toDo?.data?.dateCreated.toString(),
-            complete:toDo?.data?.complete,
-            description:toDo?.data?.description, 
-            author:toDo?.data?.author,
-            id:toDo?.data?.id
-        }); */
     }
 
     useEffect(()=>{
         if(toDo?.data?.error){
             setError(true)
         }
-        // console.log("use effect when todo changes");
-        // console.log("toDo: "+toDo);//object type Object
-        //console.log("toDo.data: "+toDo.data);
-        
-        dispatch({
-            type:"CREATE_TODO",
-            title:toDo?.data?.title,
-            dateCreated:toDo?.data?.dateCreated.toString(),
-            complete:toDo?.data?.complete,
-            description:toDo?.data?.description, 
-            author:toDo?.data?.author,
-            id:toDo?.data?.id
-        });
-
+        if(toDo?.isLoading === false && toDo?.data){
+             dispatch({
+                type:"CREATE_TODO",
+                title:toDo.data.title,
+                dateCreated:toDo.data.dateCreated.toString(),
+                complete:toDo.data.complete,
+                description:toDo.data.description, 
+                author:toDo.data.author,
+                id:toDo.data.id
+            });
+        }
     },[toDo]);
-
-    // function handleTitle (evt) {setTitle(evt.target.value)};
-
-    // function handleDescription (evt) {setDescription(evt.target.value)};
-
-    //function handleComplete (evt) {setComplete(!complete)};
-
-    // function handleDateCreated (evt) {setDateCreated(evt.target.value)};
-   /*  function handleCreate(){
-        const newTodo = {title,description, author:user}
-        setToDos([newTodo,...toDos])
-    } */
 
     return(//handecreate
         <form  

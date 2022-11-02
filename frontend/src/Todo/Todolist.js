@@ -19,6 +19,12 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
         data:{id,title,dateCreated,complete,description, author}
     }))
 
+    const[toDoComplete, toggleTodoComplete] = useResource(({id,title,dateCreated,complete,description, author}) =>({
+        url:`/toDos/${id}`,
+        method:`put`,
+        data:{id,title,dateCreated,complete,description, author},
+    }));
+
     useEffect(()=>{
         if(toDo?.data?.error){
             setError(true)
@@ -36,8 +42,18 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
                 author:toDo.data.author
             });
         }
-        
-    },[toDo])
+        if(toDoComplete?.isLoading === false && toDoComplete?.data){
+            dispatch({
+                type: "TOGGLE_TODO", 
+                id:toDoComplete.data.id,
+                title:toDoComplete.data.title,
+                dateCreated:toDoComplete.data.dateCreated,
+                complete:toDoComplete.data.complete,
+                description:toDoComplete.data.description, 
+                author:toDoComplete.data.author
+            });
+        }
+    },[toDo,toDoComplete])
 
     function handleRemove(id,title,dateCreated,complete,description,author){
         console.log("handleRemove is called");
@@ -53,12 +69,20 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
         
     }
 
-    function handleComplete(id){
-        dispatch({type: "TOGGLE_TODO", id});
+    function handleComplete(id,title,dateCreated,complete,description,author){
+        //dispatch({type: "TOGGLE_TODO", id});
+        toggleTodoComplete({
+            id,
+            title,
+            dateCreated,
+            complete,
+            description,
+            author
+        })
     }
     return(
         <div>   
-            {toDos.map((t) =><Todo {...t} key={t.id} onRemove={()=>{handleRemove(t.id,t.title,t.dateCreated,t.complete,t.description,t.author)}} item={t} onComplete={handleComplete}/>)}{/*pass in onComplete prop for toggle reducer */}
+            {toDos.map((t) =><Todo {...t} key={t.id} onRemove={()=>{handleRemove(t.id,t.title,t.dateCreated,t.complete,t.description,t.author)}} item={t} onComplete={()=>{handleComplete(t.id,t.title,t.dateCreated,t.complete,t.description,t.author)}}/>)}{/*pass in onComplete prop for toggle reducer */}
             {/*destructure todos array and spread over  todo component with each property */}
         </div>
     )

@@ -1,12 +1,6 @@
 {
   "toDos": [
     {
-      "id": 1,
-      "title": "portal",
-      "content": "Some content",
-      "author": "paul"
-    },
-    {
       "title": "portal 2",
       "dateCreated": "Wed Oct 26 2022 16:37:40 GMT-0500 (Central Daylight Time)",
       "complete": false,
@@ -45,22 +39,6 @@
       "description": "5555555",
       "author": "test@test.net",
       "id": 6
-    },
-    {
-      "title": "portal 6",
-      "dateCreated": "Mon Oct 31 2022 13:59:30 GMT-0500 (Central Daylight Time)",
-      "complete": false,
-      "description": "adcfnoowieurhvoacwiurypbveoNIEX",
-      "author": "test@test.net",
-      "id": 7
-    },
-    {
-      "title": "portal 7",
-      "dateCreated": "Mon Oct 31 2022 14:38:07 GMT-0500 (Central Daylight Time)",
-      "complete": false,
-      "description": "happy halloween",
-      "author": "test@test.net",
-      "id": 8
     }
   ],
   "users": [

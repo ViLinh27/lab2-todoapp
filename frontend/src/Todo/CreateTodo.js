@@ -34,7 +34,7 @@ export default function CreateTodo(){
              dispatch({
                 type:"CREATE_TODO",
                 title:toDo.data.title,
-                dateCreated:toDo.data.dateCreated.toString(),
+                dateCreated:toDo.data.dateCreated,
                 complete:toDo.data.complete,
                 description:toDo.data.description, 
                 author:toDo.data.author,

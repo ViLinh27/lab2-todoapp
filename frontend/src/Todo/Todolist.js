@@ -74,7 +74,26 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
     }
     return(
         <div>   
-            {toDos.map((t) =><Todo {...t} key={t.id} onRemove={()=>{handleRemove(t.id,t.title,t.dateCreated,t.complete,t.description,t.author)}} item={t} onComplete={()=>{handleComplete(t.complete,t.id)}}/>)}{/*pass in onComplete prop for toggle reducer */}
+            {toDos.map((t) =>
+                <Todo {...t} key={t.id} 
+                    onRemove={()=>{
+                        handleRemove(
+                            t.id,
+                            t.title,
+                            t.dateCreated,
+                            t.complete,
+                            t.description,
+                            t.author
+                        )
+                    }} 
+                    item={t} 
+                    onComplete={()=>{
+                        handleComplete(t.complete,t.id)
+                    }}
+                        
+                />)
+            }
+            {/*pass in onComplete prop for toggle reducer */}
             {/*destructure todos array and spread over  todo component with each property */}
         </div>
     )

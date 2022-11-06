@@ -21,17 +21,21 @@ function Todo(
     const {secondaryColor} = useContext(ThemeContext);
     const [dateCompleted] = useState(Date());
 
+    /* const handleChecked = event =>{
+
+    }; */
+
     console.log("Todo rendered");
 
     return(
         <div className="Form-todo">
             <h3 style={{color:secondaryColor}}>{title}</h3>
             <div>Date Created: {dateCreated}</div>
-            <div>Date Completed: {item.complete ? dateCompleted.toString() : ""}</div>
+            <div>Date Completed: {item.complete ? dateCompleted : ""}</div>
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>
-            <div >Task Complete: <input type="checkbox" onChange={() => onComplete(item.id)}/> {item.complete}</div>
-            <button type="button" onClick={() => onRemove(item.id)}>Delete</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}
+            <div >Task Complete: <input type="checkbox" onClick={onComplete}/></div>
+            <button type="button" onClick={onRemove}>Delete</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}
         </div>
     );
 }

@@ -39,7 +39,7 @@ function toDoReducer(state, action){//reducer for toDo actions
               (item) => {
                 if(item.id === action.id){
                   return{...item, 
-                          complete: !item.complete, 
+                          complete: !action.complete, 
                           dateCompleted: action.dateCompleted 
                         };
                 }else{

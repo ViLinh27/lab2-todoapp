@@ -74,8 +74,10 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
     }
     return(
         <div>   
-            {toDos.map((t) =>
+            {toDos.length === 0 && <h2>No posts found.</h2>}
+            {toDos.length > 0 && toDos.map((t) =>
                 <Todo {...t} key={t.id} 
+                    short = {true}
                     onRemove={()=>{
                         handleRemove(
                             t.id,

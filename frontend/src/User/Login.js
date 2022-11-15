@@ -20,11 +20,11 @@ export default function Login(){//deconstruct dispatch instead of setUser
     const [user, login] = useResource((username, password) => ({
         url: "/login",
         method: "post",
-        data: { email: username, password },
+        data: { username, password },
     }));
 
     useEffect(() => {
-        if (user?.data?.user) {
+        /* if (user?.data?.user) {
             setLoginFailed(false);
             dispatch({ type: "LOGIN", username: user.data.user.email });
         }
@@ -32,6 +32,18 @@ export default function Login(){//deconstruct dispatch instead of setUser
         if (user?.error) {
             console.log(user?.error);
             setLoginFailed(true);
+        } */
+         if (user && user.isLoading === false && (user.data || user.error)) {
+            if (user.error) {
+                setLoginFailed(true);
+            } else {
+                setLoginFailed(false);
+                dispatch({
+                    type: "LOGIN",
+                    username: "User",//user.data.username
+                    access_token: user.data.access_token,
+                });
+            }
         }
     }, [user]);
 
@@ -48,7 +60,11 @@ export default function Login(){//deconstruct dispatch instead of setUser
                 }}
             > {/*instead of setUser call dispatch here: dispatch({type: "LOGIN", username}) */}
                 <label htmlFor="login-username">Username: </label>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} name="login-username" id="login-username"/>
+                <input type="text" 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} name="login-username" id="login-username"
+
+                />
                 {/**state needs to update after entire form updated (abovee) */}
                 
                 <label htmlFor="login-password">Password: </label>

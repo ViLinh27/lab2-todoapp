@@ -19,6 +19,7 @@ export default function CreateTodo(){
     const[toDo, createTodo] = useResource(({title,dateCreated,complete,description,author}) =>({
         url:"/toDos",
         method:"post",
+        headers: {"Authorization" : `${state.user.access_token}`},
         data:{title,dateCreated,complete,description, author},
     }));
 
@@ -37,7 +38,7 @@ export default function CreateTodo(){
                 dateCreated:toDo.data.dateCreated,
                 complete:toDo.data.complete,
                 description:toDo.data.description, 
-                author:toDo.data.author,
+                author:user.username,
                 id:toDo.data.id
             });
         }
@@ -65,7 +66,7 @@ export default function CreateTodo(){
                 }
         }> {/*put new post object in newpsot like in classcode?? need a new post here to set the todo? */}
 
-            <div>Author: <b>{user}</b></div>
+            <div>Author: <b>{user.username}</b></div>
             <div>
                 <label htmlFor="create-title">Title:</label>
                 <input type="text" valule={title} onChange={(e) => setTitle(e.target.value)} name="create-title" id="create-title"/>

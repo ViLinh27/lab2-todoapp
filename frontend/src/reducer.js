@@ -15,7 +15,7 @@ function userReducer(state, action) {//reducer for user actions
     case "REGISTER":
       return action.username;
     case "LOGOUT"://we don't need username anymore
-      return "";
+      return null;
     default:
       return state;
   }

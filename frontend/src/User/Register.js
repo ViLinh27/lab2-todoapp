@@ -10,6 +10,8 @@ export default function Register(){  //replace setUser with dispatch when decons
 
     const {dispatch} = useContext(StateContext);
 
+    const [ status, setStatus] = useState("")
+
     function handlePassword(evt) {
         setPassword(evt.target.value);
     }
@@ -20,12 +22,22 @@ export default function Register(){  //replace setUser with dispatch when decons
     const [user, register] = useResource((username, password) => ({
         url: "/users",
         method: "post",
-        data: { email: username, password },
+        data: { username, password, passwordConfirmation: password },
     }));
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (user && user.data) {
         dispatch({ type: "REGISTER", username: user.data.user.email });
+        }
+    }, [user]); */
+
+    useEffect(() => {
+        if (user && user.isLoading === false && (user.data || user.error)) {
+            if (user.error) {
+                setStatus("Registration failed, please try again later.");
+            } else {
+                setStatus("Registration successful. You may now login.");
+            }
         }
     }, [user]);
     
@@ -70,6 +82,8 @@ export default function Register(){  //replace setUser with dispatch when decons
                     password !== 
                     passwordRepeat
                 }/>
+
+            <p>{status}</p>
         </form>
     )
 }

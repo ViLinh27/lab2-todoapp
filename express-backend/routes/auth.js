@@ -6,12 +6,15 @@
 
 //imports
 const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcrypt");//for hashing
 const jwt = require("jsonwebtoken");//for token
+
 const User = require("../models/User");
-const privateKey = ``;//sign the password hash
+
+const router = express.Router();
+
 const saltRounds = 10;
+const privateKey = ``;//sign the password hash//from RSA key generator
 
 //middlware // pw needs hashing
 router.use(function(req, res, next) {

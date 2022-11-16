@@ -10,17 +10,16 @@ export default function Register(){  //replace setUser with dispatch when decons
 
     const {dispatch} = useContext(StateContext);
 
-    const [ status, setStatus] = useState("")
-
     function handlePassword(evt) {
         setPassword(evt.target.value);
     }
     function handlePasswordRepeat(evt) {
         setPasswordRepeat(evt.target.value);
     }
-
+    
+    const [ status, setStatus] = useState("")
     const [user, register] = useResource((username, password) => ({
-        url: "/users",
+        url: "auth/register",
         method: "post",
         data: { username, password, passwordConfirmation: password },
     }));

@@ -15,13 +15,14 @@ export default function Login(){//deconstruct dispatch instead of setUser
     //         dispatch({ type: "LOGIN", username});
     //     },[]
     // );
-    function handlePassword (evt) { setPassword(evt.target.value) }
 
     const [user, login] = useResource((username, password) => ({
-        url: "/login",
+        url: "auth/login",
         method: "post",
         data: { username, password },
     }));
+
+    function handlePassword (evt) { setPassword(evt.target.value) }
 
     useEffect(() => {
         /* if (user?.data?.user) {

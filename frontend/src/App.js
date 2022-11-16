@@ -6,16 +6,16 @@ import appReducer from "./reducer";
 import { useResource } from 'react-request-hook';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Todolist from './Todo/Todolist';
-import UserBar from './User/UserBar';
+//import Todolist from './Todo/Todolist';
+//import UserBar from './User/UserBar';
 import CreateTodo from './Todo/CreateTodo';
 import Layout from './pages/Layout';
 import HomePage from './pages/HomePage';
 import ToDoPage from './pages/ToDoPage';
 
 import {ThemeContext, StateContext} from "./contexts";
-import Header from "./Header";
-import ChangeTheme from "./ChangeTheme";
+//import Header from "./Header";
+//import ChangeTheme from "./ChangeTheme";
 
 //down the road:
 //register we will need persistence
@@ -47,7 +47,7 @@ function App() {
       }
     }, [user]);
 
-  const [ toDos, getToDos ] = useResource(() => ({
+  const [ toDos, getToDos ] = useResource(() => ({ // -----need to get rid of?
     url: '/toDos',
     method: 'get',
     headers: { Authorization: `${state?.user?.access_token}` },
@@ -58,21 +58,13 @@ function App() {
     secondaryColor: "coral",
   });
 
-  useEffect(()=>{getToDos();}, [state?.user?.access_token])
+  useEffect(()=>{getToDos();}, [state?.user?.access_token]) // -----need to get rid of?
 
-  useEffect(() => {
+  useEffect(() => { // -----need to get rid of?
     if (toDos && toDos.isLoading === false && toDos.data) {
       dispatch({ type: 'FETCH_POSTS', toDos: toDos.data.reverse() })
     }
   }, [toDos])
-
-  /* function handleRemove(id){
-    dispatch({type:"DELETE_TODO",id});
-  }
-
-  function handleComplete(id){
-    dispatch({type: "TOGGLE_TODO", id});
-  } */
 
   return (
     <div className="App">

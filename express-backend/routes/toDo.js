@@ -10,7 +10,7 @@ the post route which will verify the token is valid, parse it, and append the pa
 
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const Post = require("../models/Post");
+const ToDo = require("../models/ToDo");
 const User = require("../models/User");
 
 const privateKey = ``;
@@ -26,7 +26,7 @@ router.use(function (req, res, next) {
         algorithms: ["RS256"],
       });
     } catch (error) {
-      /// log the
+      // log the....
       return res.status(401).json({ error: error.message });
     }
   } else {//if authorization header didn't work out
@@ -37,9 +37,9 @@ router.use(function (req, res, next) {
 
 //waits to see if req went through to persist the post i guess : POST request // authoring new post
 router.post("/", async function (req, res) {
-    const toDo = new Post({//post model//the todo note
+    const toDo = new ToDo({//post model//the todo note
         title: req.body.title,
-        content: req.body.content,
+        description: req.body.description,
         author: req.payload.id,//notice how this is from payload instead of req body
         dateCreated: req.bldy.dateCreated,
         complete: req.body.complete
@@ -51,7 +51,7 @@ router.post("/", async function (req, res) {
                 return res.status(201).json({//the req went through!!
                     id: savedPost._id,
                     title: savedPost.title,
-                    content: savedPost.content,
+                    description: savedPost.description,
                     author: savedPost.author,
                     dateCreated: savedPost.dateCreated,
                     complete:savedPost.complete
@@ -64,12 +64,12 @@ router.post("/", async function (req, res) {
 
 //retrieving user's posts: GET request
 router.get("/", async function (req, res, next) {
-    const posts = await Post.find().where("author").equals(req.payload.id).exec();
+    const posts = await ToDo.find().where("author").equals(req.payload.id).exec();
     return res.status(200).json({ posts: posts });
 });
 
 router.get("/:id", async function(req, res, next){
-  const post = await Post.findOne().where("_id").equals(req.params.id).exec();
+  const post = await ToDo.findOne().where("_id").equals(req.params.id).exec();
   return res.status(200).json(post);
 });
 

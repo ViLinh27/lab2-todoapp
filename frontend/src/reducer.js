@@ -13,9 +13,13 @@ function userReducer(state, action) {//reducer for user actions
   switch (action.type) {
     case "LOGIN"://same as register because we pass username
     case "REGISTER":
-      return action.username;
+       return {
+          username: action.username,
+          access_token: action.access_token,
+        };
     case "LOGOUT"://we don't need username anymore
       return null;
+
     default:
       return state;
   }

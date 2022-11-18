@@ -49,16 +49,6 @@ export default function CreateTodo(){
             onSubmit={e => 
                 {
                     e.preventDefault();
-                    // dispatch({
-                    //     type:"CREATE_TODO",
-                    //     title:title,
-                    //     dateCreated:dateCreated.toString(),
-                    //     description:description,
-                    //     author:user,
-                    //     complete: complete,
-                    //     dateCompleted:complete ? dateCompleted.toString : "",//fix later
-                    //     id:uuidv4(),
-                    // });
                     handleCreate();
 
                     //setDateCreated();

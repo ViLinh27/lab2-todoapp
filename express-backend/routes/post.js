@@ -37,7 +37,7 @@ router.use(function (req, res, next) {
 
 //waits to see if req went through to persist the post i guess : POST request // authoring new post
 router.post("/", async function (req, res) {
-    const post = new Post({//post model//the todo note
+    const toDo = new Post({//post model//the todo note
         title: req.body.title,
         content: req.body.content,
         author: req.payload.id,//notice how this is from payload instead of req body
@@ -45,7 +45,7 @@ router.post("/", async function (req, res) {
         complete: req.body.complete
     });
 
-    return post //will req go through and save??
+    return toDo //will req go through and save??
         .save() //note the promise here: the promise will either resolve or reject an object: the savePost from the looks of it
             .then((savedPost) => {
                 return res.status(201).json({//the req went through!!

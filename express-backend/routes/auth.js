@@ -16,12 +16,12 @@ const router = express.Router();
 const saltRounds = 10;
 const privateKey = ``;//sign the password hash//from RSA key generator
 
-//middlware // pw needs hashing
+//middlware // pw needs hashing// executes on every inbound req
 router.use(function(req, res, next) {
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
             req.hashedPassword = hash;
-            next();
+            next(); // if post, andthe path is login,we go to login middlweare
         });
     });
 })

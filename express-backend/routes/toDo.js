@@ -41,7 +41,7 @@ router.post("/", async function (req, res) {
         title: req.body.title,
         description: req.body.description,
         author: req.payload.id,//notice how this is from payload instead of req body
-        dateCreated: req.bldy.dateCreated,
+        dateCreated: req.body.dateCreated,
         complete: req.body.complete
     });
 

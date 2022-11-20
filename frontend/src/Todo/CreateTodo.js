@@ -19,7 +19,7 @@ export default function CreateTodo(){
     const[toDo, createTodo] = useResource(({title,dateCreated,complete,description,author}) =>({
         url:"/toDos",
         method:"post",
-        headers: {"Authorization" : `${state.user.access_token}`},
+        headers: {Authorization : `${state.user.access_token}`},
         data:{title,dateCreated,complete,description, author},
     }));
 
@@ -28,10 +28,7 @@ export default function CreateTodo(){
     }
 
     useEffect(()=>{
-        if(toDo?.data?.error){
-            setError(true)
-        }
-        if(toDo?.isLoading === false && toDo?.data){
+        if(toDo?.isLoading === false && toDo.data){
              dispatch({
                 type:"CREATE_TODO",
                 title:toDo.data.title,
@@ -59,7 +56,7 @@ export default function CreateTodo(){
             <div>Author: <b>{user.username}</b></div>
             <div>
                 <label htmlFor="create-title">Title:</label>
-                <input type="text" valule={title} onChange={(e) => setTitle(e.target.value)} name="create-title" id="create-title"/>
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} name="create-title" id="create-title"/>
             </div>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
             {/* <div>
@@ -67,7 +64,7 @@ export default function CreateTodo(){
                 <input type="checkbox" onChange={handleComplete} complete={complete}/>
             </div> */}
             
-            <input type="submit" value="Create" disabled={title.length === 0}/>
+            <input type="submit" value="Create" />
         </form>
-    )
+    );
 }

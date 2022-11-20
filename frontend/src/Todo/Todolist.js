@@ -77,7 +77,6 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
             {toDos.length === 0 && <h2>No posts found.</h2>}
             {toDos.length > 0 && toDos.map((t) =>
                 <Todo {...t} key={t.id} 
-                    short = {true}
                     onRemove={()=>{
                         handleRemove(
                             t.id,
@@ -98,6 +97,6 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
             {/*pass in onComplete prop for toggle reducer */}
             {/*destructure todos array and spread over  todo component with each property */}
         </div>
-    )
+    );
 }
 //typically key of component in list is database identifier for each to do

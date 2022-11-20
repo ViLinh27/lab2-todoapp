@@ -9,7 +9,7 @@ const Logout = React.lazy( () => import("./Logout"));
 
 export default function UserBar(){//instead of setUser it would have to be dispatch deconstructed here from parent App.js
 
-    const {state,dispatch} = useContext(StateContext);
+    const {state} = useContext(StateContext);
     
     if(state.user){
         return <Logout/>//replace setUser with dispatch prop here: dispatch={dispatch}
@@ -19,12 +19,8 @@ export default function UserBar(){//instead of setUser it would have to be dispa
             <>
                 <div className="userInput">
                      <Login />{/*replace setUser with dispatch prop here: dispatch={dispatch} */}
+                     <Register />{/*replace setUser with dispatch prop here: dispatch={dispatch} */}
                 </div>
-                <div className="userInput">
-                    <Register />{/*replace setUser with dispatch prop here: dispatch={dispatch} */}
-                </div>
-               
-                
             </>
         )
     }

@@ -25,15 +25,6 @@ export default function Login(){//deconstruct dispatch instead of setUser
     function handlePassword (evt) { setPassword(evt.target.value) }
 
     useEffect(() => {
-        /* if (user?.data?.user) {
-            setLoginFailed(false);
-            dispatch({ type: "LOGIN", username: user.data.user.email });
-        }
-
-        if (user?.error) {
-            console.log(user?.error);
-            setLoginFailed(true);
-        } */
          if (user && user.isLoading === false && (user.data || user.error)) {
             if (user.error) {
                 setLoginFailed(true);
@@ -41,7 +32,7 @@ export default function Login(){//deconstruct dispatch instead of setUser
                 setLoginFailed(false);
                 dispatch({
                     type: "LOGIN",
-                    username: "User",//user.data.username
+                    username: user.data.username,//user.data.username
                     access_token: user.data.access_token,
                 });
             }
@@ -53,7 +44,7 @@ export default function Login(){//deconstruct dispatch instead of setUser
             {loginFailed && (
                 <span style={{ color: "red" }}>Invalid username or password</span>
             )}
-            <form className="Form-log" onSubmit={e => 
+            <form className="Form-log" onSubmit={(e)=> 
                 {
                     e.preventDefault(); 
                     //dispatch({ type: "LOGIN", username});

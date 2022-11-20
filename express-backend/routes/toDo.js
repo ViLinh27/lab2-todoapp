@@ -11,7 +11,7 @@ the post route which will verify the token is valid, parse it, and append the pa
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const ToDo = require("../models/ToDo");
-const User = require("../models/User");
+//const User = require("../models/User");
 
 const privateKey = ``;
 
@@ -49,7 +49,7 @@ router.post("/", async function (req, res) {
         .save() //note the promise here: the promise will either resolve or reject an object: the savePost from the looks of it
             .then((savedPost) => {
                 return res.status(201).json({//the req went through!!
-                    id: savedPost._id,
+                    _id: savedPost._id,
                     title: savedPost.title,
                     description: savedPost.description,
                     author: savedPost.author,
@@ -72,6 +72,24 @@ router.get("/:id", async function(req, res, next){
   const post = await ToDo.findOne().where("_id").equals(req.params.id).exec();
   return res.status(200).json(post);
 });
+
+//for deleting posts
+router.delete("/delete/:id",async function(req,res,next){
+  const toDo = await ToDo.findOne().where("_id").equals(req.params.id).exec();//find the note with the given id from request parameter with id
+ 
+  return res.status(200).json(toDo);
+  
+});
+
+//toggle complete field
+router.patch("/toggle/:id", async function (req,res,next){
+  //look for the todo by id
+  const toDo = await ToDo.findOne().where("_id").equals(req.params.id).exec();
+  //update complete fields as needed when toggle checked
+  toDo.complete = req.body.complete,
+  toDo.save();
+  return res.status(200).json(toDo);
+})
 
 module.exports = router;
 

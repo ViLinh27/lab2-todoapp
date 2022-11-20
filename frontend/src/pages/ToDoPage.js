@@ -15,20 +15,17 @@ export default function ToDoPage () {
         url: `/toDos/${id}`,
         method:'get',
         headers: { Authorization: `${state.user.access_token}` },
-    }))
+    }));
 
     useEffect(getTodo,[id])
 
     useEffect(() => {
-        navigate(`/toDos/${toDo.data.id}`);
+        navigate(`/toDos/${toDo.data._id}`);
     },[toDo])
 
     return(
         <div>
-            {(toDo && toDo.data)
-                ? <Todo {...toDo.data} />
-                :'Loading...'
-            }
+            {toDo && toDo.data ? <Todo {...toDo.data} /> :'Loading...' }
             <hr/>
         </div>
     )

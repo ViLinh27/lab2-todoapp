@@ -60,11 +60,11 @@ function App() {
 
   useEffect(()=>{getToDos();}, [state?.user?.access_token]) // -----need to get rid of?
 
-  useEffect(() => { // -----need to get rid of?
+  /* useEffect(() => { // -----need to get rid of?
     if (toDos && toDos.isLoading === false && toDos.data) {
       dispatch({ type: 'FETCH_POSTS', toDos: toDos.data.reverse() })
     }
-  }, [toDos])
+  }, [toDos]) */
 
   return (
     <div className="App">

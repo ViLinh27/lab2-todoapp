@@ -51,7 +51,7 @@ export default function Register(){  //replace setUser with dispatch when decons
             <label htmlFor="register-username">Username: </label>
             <input type="text" 
                 value={username} 
-                onChange={e => setUsername(e.target.value)} 
+                onChange={(e) => setUsername(e.target.value)} 
                 name="register-username" 
                 id="register-username"/>
 

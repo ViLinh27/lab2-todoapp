@@ -59,7 +59,7 @@ export default function CreateTodo(){
             <div>Author: <b>{user.username}</b></div>
             <div>
                 <label htmlFor="create-title">Title:</label>
-                <input type="text" valule={title} onChange={(e) => setTitle(e.target.value)} name="create-title" id="create-title"/>
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} name="create-title" id="create-title"/>
             </div>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
             {/* <div>

@@ -17,7 +17,7 @@ export default function CreateTodo(){
     const {user} =state;
 
     const[toDo, createTodo] = useResource(({title,dateCreated,complete,description,author}) =>({
-        url:"/toDos",
+        url:"/toDo",
         method:"post",
         headers: {Authorization : `${state.user.access_token}`},
         data:{title,dateCreated,complete,description, author},

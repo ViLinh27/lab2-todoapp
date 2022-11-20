@@ -21,18 +21,17 @@ const router = express.Router();
 router.use(function (req, res, next) {
   if (req.header("Authorization")) {
     try {
-        //verify token here
       req.payload = jwt.verify(req.header("Authorization"), privateKey, {
         algorithms: ["RS256"],
       });
     } catch (error) {
-      // log the....
+      /// log the
       return res.status(401).json({ error: error.message });
     }
-  } else {//if authorization header didn't work out
+  } else {
     return res.status(401).json({ error: "Unauthorized" });
   }
-  next();//what's the next request
+  next();
 });
 
 //waits to see if req went through to persist the post i guess : POST request // authoring new post

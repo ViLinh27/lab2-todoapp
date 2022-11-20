@@ -29,13 +29,7 @@ function App() {
     user:"",
     toDos: initialTodos,
   });
-
-  /* useEffect(() => {
-    fetch('/api/toDos')
-    .then(result => result.json())
-    .then(toDos => dispatch({ type: 'FETCH_POSTS', toDos }))
-  }, []) */
-
+  
   const {user} = state;
 
   useEffect(() => {

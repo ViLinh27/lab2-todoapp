@@ -8,9 +8,10 @@ const ToDoSchema = new Schema(
         description: {type: String, required: true},
         author: {type: Schema.Types.ObjectId, ref: "User"},
         dateCreated:{type:String},
+        dateCompleted:{type:String},
         complete: {type:Boolean, default: false},
     }
 );
 
-//Export model
+//Export model/
 module.exports = mongoose.model("ToDo", ToDoSchema);

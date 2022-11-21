@@ -13,7 +13,7 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
 
     const [error,setError] = useState(false);
 
-    const [ toDo, removeToDo ] = useResource(({id,title,dateCreated,complete,description, author}) => ({
+    const [ toDodel, removeToDo ] = useResource(({id,title,dateCreated,complete,description, author}) => ({
         url: `/toDo/${id}`,
         method: 'delete',
         data:{id,title,dateCreated,complete,description, author}
@@ -26,20 +26,20 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
     }));
 
     useEffect(()=>{
-        if(toDo?.data?.error){
+        if(toDodel?.data?.error){
             setError(true)
         }
         //console.log("useEffect for remove note called");
-        if(toDo?.isLoading === false && toDo?.data){
+        if(toDodel?.isLoading === false && toDodel?.data){
             console.log("onto the dispatch");
             dispatch({
                 type:"DELETE_TODO",
-                id:toDo.data.id,
-                title:toDo.data.title,
-                dateCreated:toDo.data.dateCreated,
-                complete:toDo.data.complete,
-                description:toDo.data.description, 
-                author:toDo.data.author
+                id:toDodel.data.id,
+                title:toDodel.data.title,
+                dateCreated:toDodel.data.dateCreated,
+                complete:toDodel.data.complete,
+                description:toDodel.data.description, 
+                author:toDodel.data.author
             });
         }
         if(toDoComplete?.isLoading === false && toDoComplete?.data){
@@ -49,7 +49,7 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
                 id:toDoComplete.data.id
             });
         }
-    },[toDo,toDoComplete])
+    },[toDodel,toDoComplete])
 
     function handleRemove(id,title,dateCreated,complete,description,author){
         console.log("handleRemove is called");

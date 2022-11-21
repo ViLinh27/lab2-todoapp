@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema(
     {
         username: {type: String, required: true, unique: true},
         password: {type: String, required: true,},
-        toDos: [{type: Schema.Types.ObjectId, ref: 'ToDo'}]
+        toDo: [{type: Schema.Types.ObjectId, ref: 'ToDo'}]
     }
 );
 //Export model

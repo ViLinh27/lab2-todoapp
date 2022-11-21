@@ -12,4 +12,4 @@ function connect() { //connects do db
     )
 }
 
-module.exports = connect
+module.exports = connect;

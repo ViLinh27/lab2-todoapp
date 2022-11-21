@@ -54,7 +54,7 @@ function toDoReducer(state, action){//reducer for toDo actions
         case "DELETE_TODO":
             return state.filter((item) => item.id !== action.id);
         case 'FETCH_POSTS':
-            return action.toDos;
+            return action.toDo;
         case 'CLEAR_TODO':
               return [];
         default:
@@ -65,6 +65,6 @@ function toDoReducer(state, action){//reducer for toDo actions
 export default function appReducer(state, action) {//export to make the reducer functions usable
   return {
     user: userReducer(state.user, action),
-    toDos: toDoReducer(state.toDos, action),
+    toDo: toDoReducer(state.toDo, action),
   };
 }

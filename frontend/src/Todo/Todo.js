@@ -8,7 +8,7 @@
 //complete(boolean)
 //dateCompleted() - dynamic
 
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import {ThemeContext} from '../contexts';
 import {useResource} from "react-request-hook";
 import { Link } from 'react-router-dom'
@@ -16,7 +16,7 @@ import {StateContext} from "../contexts";
 
 //pass in onComplete from todolist component
 function Todo(
-    {title,description,author,dateCreated,complete, onRemove,item,onComplete,id,short=false}){
+    {title,description,author,dateCreated,complete, onRemove,item,onComplete,id}){
     
     const {secondaryColor} = useContext(ThemeContext);
     const [dateCompleted] = useState(Date());
@@ -27,26 +27,20 @@ function Todo(
 
     console.log("Todo rendered");
 
-    let processedContent = description
-    if (short) {
-        if (description.length > 30) {
-            processedContent = description.substring(0, 30) + '...'
-        }
-    }
-
     return(
         <div className="Form-todo">
             {/* <h3 style={{color:secondaryColor}}>{title}</h3> */}
-            <Link to={`/toDos/${id}`}>
+            <Link to={`/toDo/${id}`}>
                 <h3 style={{color: "black"}}>{title}</h3>
             </Link>
             <div>Date Created: {dateCreated}</div>
             <div>Date Completed: {item.complete ? dateCompleted : ""}</div>
             {/* <div>{description}</div> */}
-            <div>{processedContent}</div>
+           {/*  <div>{processedContent}</div>
                 {
                     short && <div> <Link to={`/toDos/${id}`}>View full post</Link> </div>
-                }
+                } */}
+            <div>{description}</div>
             <i>Written by <b>{author}</b></i>
             <div >Task Complete: <input type="checkbox" onClick={onComplete}/></div>
             <button type="button" onClick={onRemove}>Delete</button>{/*add an onClick to call passed in item (and id) and onRemove prop */}

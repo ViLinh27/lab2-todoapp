@@ -27,15 +27,9 @@ function App() {
 
   const [state,dispatch] = useReducer(appReducer,{
     user:"",
-    toDos: initialTodos,
+    toDo: initialTodos,
   });
-
-  /* useEffect(() => {
-    fetch('/api/toDos')
-    .then(result => result.json())
-    .then(toDos => dispatch({ type: 'FETCH_POSTS', toDos }))
-  }, []) */
-
+  
   const {user} = state;
 
   useEffect(() => {
@@ -47,8 +41,8 @@ function App() {
       }
     }, [user]);
 
-  const [ toDos, getToDos ] = useResource(() => ({ // -----need to get rid of?
-    url: '/toDos',
+  const [ toDo, getToDos ] = useResource(() => ({ // -----need to get rid of?
+    url: '/toDo',
     method: 'get',
     headers: { Authorization: `${state?.user?.access_token}` },
   }));
@@ -59,12 +53,6 @@ function App() {
   });
 
   useEffect(()=>{getToDos();}, [state?.user?.access_token]) // -----need to get rid of?
-
-  useEffect(() => { // -----need to get rid of?
-    if (toDos && toDos.isLoading === false && toDos.data) {
-      dispatch({ type: 'FETCH_POSTS', toDos: toDos.data.reverse() })
-    }
-  }, [toDos])
 
   return (
     <div className="App">

@@ -9,37 +9,37 @@ import {useResource} from "react-request-hook";
 //fix key at some point: need UUID instead of index or something-------
 export default function Todolist(){{/*onComplete prop passed in from App.js */}
     const {state, dispatch } = useContext(StateContext);
-    const {toDos,user} = state;
+    const {toDo,user} = state;
 
     const [error,setError] = useState(false);
 
-    const [ toDo, removeToDo ] = useResource(({id,title,dateCreated,complete,description, author}) => ({
-        url: `/toDos/${id}`,
+    const [ toDodel, removeToDo ] = useResource(({id,title,dateCreated,complete,description, author}) => ({
+        url: `/toDo/${id}`,
         method: 'delete',
         data:{id,title,dateCreated,complete,description, author}
     }))
 
     const[toDoComplete, toggleTodoComplete] = useResource(({complete,id}) =>({
-        url:`/toDos/${id}`,
+        url:`/toDo/${id}`,
         method:`patch`,
         data:{complete,id},
     }));
 
     useEffect(()=>{
-        if(toDo?.data?.error){
+        if(toDodel?.data?.error){
             setError(true)
         }
         //console.log("useEffect for remove note called");
-        if(toDo?.isLoading === false && toDo?.data){
+        if(toDodel?.isLoading === false && toDodel?.data){
             console.log("onto the dispatch");
             dispatch({
                 type:"DELETE_TODO",
-                id:toDo.data.id,
-                title:toDo.data.title,
-                dateCreated:toDo.data.dateCreated,
-                complete:toDo.data.complete,
-                description:toDo.data.description, 
-                author:toDo.data.author
+                id:toDodel.data.id,
+                title:toDodel.data.title,
+                dateCreated:toDodel.data.dateCreated,
+                complete:toDodel.data.complete,
+                description:toDodel.data.description, 
+                author:toDodel.data.author
             });
         }
         if(toDoComplete?.isLoading === false && toDoComplete?.data){
@@ -49,7 +49,7 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
                 id:toDoComplete.data.id
             });
         }
-    },[toDo,toDoComplete])
+    },[toDodel,toDoComplete])
 
     function handleRemove(id,title,dateCreated,complete,description,author){
         console.log("handleRemove is called");
@@ -74,10 +74,9 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
     }
     return(
         <div>   
-            {toDos.length === 0 && <h2>No posts found.</h2>}
-            {toDos.length > 0 && toDos.map((t) =>
+            {toDo.length === 0 && <h2>No posts found.</h2>}
+            {toDo.length > 0 && toDo.map((t) =>
                 <Todo {...t} key={t.id} 
-                    short = {true}
                     onRemove={()=>{
                         handleRemove(
                             t.id,
@@ -98,6 +97,6 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
             {/*pass in onComplete prop for toggle reducer */}
             {/*destructure todos array and spread over  todo component with each property */}
         </div>
-    )
+    );
 }
 //typically key of component in list is database identifier for each to do

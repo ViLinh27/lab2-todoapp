@@ -13,10 +13,10 @@ export default function Layout () {
             <Header text="My To Do App" />
             <React.Suspense fallback={"Loading..."}>
                 <UserBar />
-            </React.Suspense> <br />
+            </React.Suspense>
             <br />
             {user && <Link to="/toDos/create">Create New To Do Note</Link>}
             <Outlet />
         </>
-    )
+    );
 }

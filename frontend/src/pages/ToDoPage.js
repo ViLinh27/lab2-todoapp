@@ -12,23 +12,20 @@ export default function ToDoPage () {
 
     const navigate = useNavigate();
     const [toDo, getTodo] = useResource( ()=> ({
-        url: `/toDos/${id}`,
+        url: `/toDo/${id}`,
         method:'get',
         headers: { Authorization: `${state.user.access_token}` },
-    }))
+    }));
 
     useEffect(getTodo,[id])
 
     useEffect(() => {
-        navigate(`/toDos/${toDo.data.id}`);
+        navigate(`/toDo/${toDo.data._id}`);
     },[toDo])
 
     return(
         <div>
-            {(toDo && toDo.data)
-                ? <Todo {...toDo.data} />
-                :'Loading...'
-            }
+            {toDo && toDo.data ? <Todo {...toDo.data} /> :'Loading...' }
             <hr/>
         </div>
     )

@@ -9,7 +9,7 @@ import {useResource} from "react-request-hook";
 //fix key at some point: need UUID instead of index or something-------
 export default function Todolist(){{/*onComplete prop passed in from App.js */}
     const {state, dispatch } = useContext(StateContext);
-    const {toDos,user} = state;
+    const {toDo,user} = state;
 
     const [error,setError] = useState(false);
 
@@ -20,7 +20,7 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
     }))
 
     const[toDoComplete, toggleTodoComplete] = useResource(({complete,id}) =>({
-        url:`/toDos/${id}`,
+        url:`/toDo/${id}`,
         method:`patch`,
         data:{complete,id},
     }));
@@ -74,8 +74,8 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
     }
     return(
         <div>   
-            {toDos.length === 0 && <h2>No posts found.</h2>}
-            {toDos.length > 0 && toDos.map((t) =>
+            {toDo.length === 0 && <h2>No posts found.</h2>}
+            {toDo.length > 0 && toDo.map((t) =>
                 <Todo {...t} key={t.id} 
                     onRemove={()=>{
                         handleRemove(

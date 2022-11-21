@@ -5,8 +5,8 @@ import Todolist from "../Todo/Todolist";
 
 export default function HomePage() {
   const { state, dispatch } = useContext(StateContext);
-  const [toDos, getTodos] = useResource(() => ({
-    url: "/toDos",
+  const [toDo, getTodos] = useResource(() => ({
+    url: "/toDo",
     method: "get",
     headers: { Authorization: `${state?.user?.access_token}` },
   }));
@@ -14,13 +14,13 @@ export default function HomePage() {
     getTodos();
   }, [state?.user?.access_token]);
   useEffect(() => {
-    if (toDos && toDos.isLoading === false && toDos.data) {
-      dispatch({ type: "FETCH_POSTS", toDos: toDos.data.toDos.reverse() });
+    if (toDo && toDo.isLoading === false && toDo.data) {
+      dispatch({ type: "FETCH_POSTS", toDo: toDo.data.posts.reverse() });
     }
-  }, [toDos]);
+  }, [toDo]);
   return (
     <>
-      {toDos?.isLoading && "To Dos loading..."} <Todolist />
+      {toDo?.isLoading && "To Dos loading..."} <Todolist />
     </>
   );
 }

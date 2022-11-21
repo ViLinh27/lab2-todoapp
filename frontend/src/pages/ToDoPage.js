@@ -12,7 +12,7 @@ export default function ToDoPage () {
 
     const navigate = useNavigate();
     const [toDo, getTodo] = useResource( ()=> ({
-        url: `/toDos/${id}`,
+        url: `/toDo/${id}`,
         method:'get',
         headers: { Authorization: `${state.user.access_token}` },
     }));
@@ -20,7 +20,7 @@ export default function ToDoPage () {
     useEffect(getTodo,[id])
 
     useEffect(() => {
-        navigate(`/toDos/${toDo.data._id}`);
+        navigate(`/toDo/${toDo.data._id}`);
     },[toDo])
 
     return(

@@ -14,7 +14,7 @@ export default function Todolist(){{/*onComplete prop passed in from App.js */}
     const [error,setError] = useState(false);
 
     const [ toDo, removeToDo ] = useResource(({id,title,dateCreated,complete,description, author}) => ({
-        url: `/toDos/${id}`,
+        url: `/toDo/${id}`,
         method: 'delete',
         data:{id,title,dateCreated,complete,description, author}
     }))

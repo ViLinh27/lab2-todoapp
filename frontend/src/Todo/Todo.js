@@ -30,7 +30,7 @@ function Todo(
     return(
         <div className="Form-todo">
             {/* <h3 style={{color:secondaryColor}}>{title}</h3> */}
-            <Link to={`/toDos/${id}`}>
+            <Link to={`/toDo/${id}`}>
                 <h3 style={{color: "black"}}>{title}</h3>
             </Link>
             <div>Date Created: {dateCreated}</div>

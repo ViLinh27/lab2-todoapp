@@ -21,9 +21,7 @@ function Todo(
     const {secondaryColor} = useContext(ThemeContext);
     const [dateCompleted] = useState(Date());
 
-    /* const handleChecked = event =>{
-
-    }; */
+    const[isChecked,setIsChecked] = useState(false);//test
 
     const {state, dispatch } = useContext(StateContext);
 
@@ -36,11 +34,11 @@ function Todo(
         data:{_id,title,dateCreated,complete,description, author},
     }))
 
-    const[toDoComplete, toggleTodoComplete] = useResource(({_id,title,dateCreated,complete,description, author}) =>({
+    const[toDoComplete, toggleTodoComplete] = useResource(({complete}) =>({
         url:`/toDo/toggle/${_id}`,
-        method:'put',
+        method:'patch',
         headers: {Authorization : `${state.user.access_token}`},
-       data:{_id,title,dateCreated,complete,description, author},
+       data:{complete},
     }));
 
     useEffect(()=>{
@@ -57,21 +55,16 @@ function Todo(
                 author:toDodel.data.author
             });
         }
-    },[toDoComplete])
+    },[toDodel])
     useEffect(()=>{
         if(toDoComplete.isLoading === false && toDoComplete?.data){
             dispatch({
                 type: "TOGGLE_TODO",
-                 id:toDodel.data._id,
-                title:toDodel.data.title,
-                dateCreated:toDodel.data.dateCreated,
-                dateCompleted:toDodel.data.dateCompleted,
-                complete:toDodel.data.complete,
-                description:toDodel.data.description, 
-                author:toDodel.data.author
+                 
+                complete:toDoComplete.data.complete
             });
         }
-    },[toDodel])
+    },[toDoComplete])
 
 /*     function handleRemove(id,title,dateCreated,complete,description,author){
         console.log("handleRemove is called");
@@ -102,7 +95,7 @@ function Todo(
                 <h3 style={{color: "black"}}>{title}</h3>
             </Link>
             <div>Date Created: {dateCreated}</div>
-            <div>Date Completed: {item.complete ? dateCompleted : ""}</div>
+            <div>Date Completed: {item.complete ? dateCompleted.toString() : ""}</div>
             {/* <div>{description}</div> */}
            {/*  <div>{processedContent}</div>
                 {
@@ -110,13 +103,18 @@ function Todo(
                 } */}
             <div>{description}</div>
             <i>Written by <b>{author}</b></i>
-            <div >Task Complete: <input type="checkbox" onClick={
-                (e)=>{
-                    e.preventDefault();
-                    toggleTodoComplete(_id,title,dateCreated,complete,description, author);
-                    // dispatch({type: "TOGGLE_TODO",id:_id})
-                }
-            }/></div>{/*add an onClic */}
+            <div >Task Complete: 
+                <input type="checkbox" checked={isChecked} onChange={
+                    (e)=>{
+                        e.preventDefault();
+                        toggleTodoComplete(complete);
+                        
+                        console.log("checkbox has been checked");
+
+                        setIsChecked(e.currentTarget.checked);
+                    }
+                }/>
+            </div>{/*add an onClic */}
             <button type="button" onClick={
                 (e) =>{
                     e.preventDefault();

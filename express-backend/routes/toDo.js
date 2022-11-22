@@ -87,7 +87,13 @@ router.patch("/toggle/:id", async function (req,res,next){
   //update complete fields as needed when toggle checked
   toDo.complete = req.body.complete,
   toDo.save();
-  return res.status(200).json(toDo);
+  
+  if(toDo){
+    return res.status(200).json(toDo);
+  }
+  else{
+    return res.status(404).json({error:"Could not toggle"});
+  }
 })
 
 module.exports = router;

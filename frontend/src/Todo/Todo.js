@@ -25,7 +25,7 @@ function Todo(
 
     }; */
 
-    console.log("Todo rendered");
+    //console.log("Todo rendered");
 
     return(
         <div className="Form-todo">

@@ -52,7 +52,7 @@ function toDoReducer(state, action){//reducer for toDo actions
               }
             );
         case "DELETE_TODO":
-            return state.filter((item) => item.id !== action.id);
+            return state.filter(item => item.id !== action.id);
         case 'FETCH_POSTS':
             return action.toDo;
         case 'CLEAR_TODO':

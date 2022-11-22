@@ -74,7 +74,7 @@ router.get("/:id", async function(req, res, next){
 
 //for deleting posts
 router.delete("/delete/:id",async function(req,res,next){
-  const toDo = await ToDo.findOne().where("_id").equals(req.params.id).exec();//find the note with the given id from request parameter with id
+  const toDo = await ToDo.findOneAndDelete().where("_id").equals(req.params.id).exec();//find the note with the given id from request parameter with id
  
   return res.status(200).json(toDo);
   
@@ -83,7 +83,7 @@ router.delete("/delete/:id",async function(req,res,next){
 //toggle complete field
 router.patch("/toggle/:id", async function (req,res,next){
   //look for the todo by id
-  const toDo = await ToDo.findOne().where("_id").equals(req.params.id).exec();
+  const toDo = await ToDo.findOneAndUpdate().where("_id").equals(req.params.id).exec();
   //update complete fields as needed when toggle checked
   toDo.complete = req.body.complete,
   toDo.save();
